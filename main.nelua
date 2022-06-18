@@ -1,0 +1,39 @@
+-- Get modules
+
+require "raylib"
+require "engine/render/render"
+require "utilites/ErrorHandler"
+
+-- Set screen dimensions
+
+local screenWidth: uint16 <comptime> = 800
+local screenHeight: uint16 <comptime> = 600
+
+InitWindow(screenWidth, screenHeight, "Game Engine") -- Create the window
+
+SetTargetFPS(60) -- Set the FPS limit
+
+-- Main Loop
+
+while not WindowShouldClose() do
+	if ErrorHandler.isHaulted then
+		goto ErrorRaised
+	end
+
+	if GetCharPressed() > 0 then
+		ErrorHandler:RaiseError(3, "An example reason")
+	end
+
+	BeginDrawing()
+
+		Renderer:BeginRender() -- Render the available scene
+
+		Renderer:EndRender() -- Stop rendering to allow the loop to continue
+
+	EndDrawing()
+
+end
+
+::ErrorRaised::
+
+CloseWindow()

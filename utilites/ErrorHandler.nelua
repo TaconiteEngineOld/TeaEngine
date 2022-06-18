@@ -1,0 +1,25 @@
+local ErrorHandlerClass = @record {
+	errorIndex: cint,
+	isHaulted: boolean
+}
+
+function ErrorHandlerClass:RaiseError(severity: cint, reason: string)
+	switch severity do
+	case 1 then
+		print("\n\x1b[31mSimple clean exit, something went wrong. The reason is as follows: ", reason)
+		self.isHaulted = true
+	case 2 then
+		print("\n\x1b[31mSomething went pretty wrong. The reason is as follows: ", reason)
+		self.isHaulted = true
+	case 3 then
+		print("\n\x1b[31mThe program needed to hault, things could have gone wrong otherwhise. The reason is as follows: ", reason)
+		self.isHaulted = true
+	else
+		print("\n\x1b[31mThat's not an understood severity code!")
+		self.isHaulted = true
+	end
+
+	print("\n\x1b[37mDefault output:")
+end
+
+global ErrorHandler: ErrorHandlerClass

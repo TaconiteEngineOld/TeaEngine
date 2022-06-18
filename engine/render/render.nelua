@@ -1,0 +1,17 @@
+local RendererClass = @record {
+	isRendering: boolean
+}
+
+global Renderer: RendererClass
+
+function RendererClass:BeginRender()
+	self.isRendering = true
+
+	ClearBackground(RAYWHITE)
+
+	DrawText("Engine Demo!", 32, 32, 20, LIGHTGRAY)
+end
+
+function RendererClass:EndRender()
+	self.isRendering = false
+end

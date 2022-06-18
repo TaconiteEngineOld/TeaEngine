@@ -1,0 +1,14 @@
+-- Requires raylib
+
+local UIWindow = @record {
+	position: Vector2,
+	size: Vector2,
+	borderColour: Color,
+	borderSize: Vector2,
+	bgColour: Color
+}
+
+function UIWindow:Draw()
+	DrawRectangle(self.position.x + self.borderSize, self.position.y, self.size.x, self.size.y, bgColour)
+	DrawRectangle(self.position.x + self.borderSize, self.position.y, self.size.x, self.size.y, bgColour)
+end
