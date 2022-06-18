@@ -1,6 +1,0 @@
-local UIManagerClass = @record {
-		
-}
-
-
-global UIManager: UIManagerClass

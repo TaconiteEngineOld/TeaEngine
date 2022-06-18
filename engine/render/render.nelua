@@ -1,3 +1,5 @@
+require "engine/gui/gui"
+
 local RendererClass = @record {
 	isRendering: boolean
 }

@@ -1,0 +1,34 @@
+-- Requires raylib
+
+local MouseClass = @record {
+	x: cint,
+	y: cint,
+
+	LMBDown: boolean,
+	MMBDown: boolean,
+	RMBDown: boolean,
+
+	LMBPressed: boolean,
+	MMBPressed: boolean,
+	RMBPressed: boolean, 
+
+	scrollWheelMove: cint,
+
+	insideUIELement: boolean,
+}
+
+function MouseClass:Update()
+	self.x = GetMouseX()
+	self.y = GetMouseY()
+
+	self.LMBDown = IsMouseButtonDown(0)
+	self.MMBDown = IsMouseButtonDown(1)
+	self.RMBDown = IsMouseButtonDown(0)
+
+	self.LMBPressed = IsMouseButtonPressed(0)
+	self.RMBPressed = IsMouseButtonPressed(1)
+
+	self.scrollWheelMove = GetMouseWheelMove()
+end
+
+global Mouse: MouseClass

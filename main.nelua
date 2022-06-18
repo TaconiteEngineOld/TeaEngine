@@ -2,7 +2,8 @@
 
 require "raylib"
 require "engine/render/render"
-require "utilites/ErrorHandler"
+require "engine/mouse/mouse"
+require "engine/information-handler/information-handler"
 
 -- Set screen dimensions
 
@@ -16,12 +17,19 @@ SetTargetFPS(60) -- Set the FPS limit
 -- Main Loop
 
 while not WindowShouldClose() do
-	if ErrorHandler.isHaulted then
+	if InformationHandler.isHaulted then
 		goto ErrorRaised
 	end
 
-	if GetCharPressed() > 0 then
-		ErrorHandler:RaiseError(3, "An example reason")
+	Mouse:Update()
+
+	if Mouse.LMBPressed then
+		InformationHandler:RaiseInfo("Scene index was increased.")
+	end
+
+	if Mouse.RMBPressed then
+		print("RMB was pressed")
+		InformationHandler:RaiseError(1, "RMB was pressed, requesting an exit.")
 	end
 
 	BeginDrawing()
