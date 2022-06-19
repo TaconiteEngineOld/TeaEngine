@@ -8,43 +8,91 @@ local Widget = @record {
 local UIWindow = @record {
 	position: Vector2,
 	size: Vector2,
-	borderColour: Color,
+	borderColor: Color,
 	borderSize: cint,
-	bgColour: Color,
-	fgColour: Color,
+	bgColor: Color,
+	fgColor: Color,
 
 	menuBarAvailable: boolean,
 	menuBarSize: cint,
 	menuText: string,
 	textPad: cint,
-	fSize: cint
+	fSize: cint,
+
+	isOccupied: boolean
 }
 
 local UIManagerClass = @record {
+	spacesLeft: boolean,
 	UIWindows: [20]UIWindow,
-	windowSpotsFree: [20]cint
+	nextWindowSpotFree: cint,
+	windowSpotsFree: [20]boolean,
 }
 
 -- [[ Record functions ]] --
 
 function UIWindow:Draw()
 	if self.borderSize > 0 then
-		DrawRectangle(self.position.x, self.position.y, self.size.x, self.size.y, self.borderColour)
-		DrawRectangle(self.position.x + self.borderSize, self.position.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColour)
+		DrawRectangle(self.position.x, self.position.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.borderSize, self.position.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
 	else
-		DrawRectangle(self.position.x, self.position.y, self.size.x, self.size.y, self.bgColour)
+		DrawRectangle(self.position.x, self.position.y, self.size.x, self.size.y, self.bgColor)
 	end
 
 	if self.menuBarAvailable then
-		DrawRectangle(self.position.x, self.position.y, self.size.x, self.menuBarSize, self.borderColour) 
-		DrawRectangle(self.position.x + self.borderSize, self.position.y + self.borderSize, self.size.x - self.borderSize * 2, self.menuBarSize - self.borderSize * 2, self.bgColour)
+		DrawRectangle(self.position.x, self.position.y, self.size.x, self.menuBarSize, self.borderColor) 
+		DrawRectangle(self.position.x + self.borderSize, self.position.y + self.borderSize, self.size.x - self.borderSize * 2, self.menuBarSize - self.borderSize * 2, self.bgColor)
 
-		DrawText(self.menuText, self.position.x	+ self.borderSize + self.textPad, self.position.y + self.borderSize + self.textPad, self.fSize, self.fgColour)
+		DrawText(self.menuText, self.position.x	+ self.borderSize + self.textPad, self.position.y + self.borderSize + self.textPad, self.fSize, self.fgColor)
 	end
 end
 
-function UIManagerClass:AddWindow(xy: Vector2, wh: Vector2, borderS: cint, borderC: Color, bg: Color, fg: Color, text: string, fSize: cint, menuBar: boolean, menuSize: cint, menuText: string)
+--[[function UIManagerClass:SetupWindowPositions()
+	for i: usize, window: *UIWindow in mipairs(self.UIWindows) do
+		window.isOccupied = false
+	end
+end]]--
+
+function UIManagerClass:UpdateWindows()
+	for i: usize, window: *UIWindow in mipairs(self.UIWindows) do
+		window:Draw()		
+	end
+end
+
+function UIManagerClass:UpdateNextSpotFree(): cint
+	for i: usize, freeSpot: boolean in ipairs(self.windowSpotsFree) do
+		if freeSpot then
+			InformationHandler:Log("Found a spot!")
+			return i 
+		end
+	end
 	
+	InformationHandler:Warn("No spaces left!")
+	self.spacesLeft = false
+	return -1
+end
+
+function UIManagerClass:UpdateFreeSpots()
+	for i: usize, spot: UIWindow in ipairs(self.UIWindows) do
+		if spot.isOccupied then
+			self.windowSpotsFree[i] = false
+		else
+			self.windowSpotsFree[i] = true
+		end
+	end
+
+	self.nextWindowSpotFree = self:UpdateNextSpotFree()
+end
+
+function UIManagerClass:AddWindow(uPosition: Vector2, uSize: Vector2, uBorderSize: cint, uBorderColor: Color, uBGColor: Color, uFGColor: Color, uMenuBarAvailable: boolean, uMenuBarSize: cint, uMenuText: string, uTextPad: cint, uFSize: cint)
+		self:UpdateFreeSpots()
+
+		if self.spacesLeft then
+			self.UIWindows[self.nextWindowSpotFree] = (UIWindow){uPosition, uSize, uBorderColor, uBorderSize, uBGColor, uFGColor, uMenuBarAvailable, uMenuBarSize, uMenuText, uTextPad, uFSize, false}
+		else
+			print(self.spacesLeft)
+			InformationHandler:RaiseError(2, "There are no window spaces left!")
+		end
 end
 
 global UIManager: UIManagerClass

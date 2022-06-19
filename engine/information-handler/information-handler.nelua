@@ -22,8 +22,12 @@ function InformationHandlerClass:RaiseError(severity: cint, reason: string)
 	print("\n\x1b[37mDefault output:")
 end
 
-function InformationHandlerClass:RaiseInfo(reason: string)
+function InformationHandlerClass:Log(reason: string)
 	print("\n\x1b[32m", reason, "\n\x1b[37m")
+end
+
+function InformationHandlerClass:Warn(reason: string)
+	print("\n\x1b[93m", reason, "\n\x1b[37m")
 end
 
 global InformationHandler: InformationHandlerClass

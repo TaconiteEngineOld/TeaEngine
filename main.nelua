@@ -1,9 +1,11 @@
 -- Get modules
 
 require "raylib"
-require "engine/render/render"
-require "engine/mouse/mouse"
+require "iterators"
 require "engine/information-handler/information-handler"
+require "engine/gui/gui"
+require "engine/mouse/mouse"
+require "engine/render/render"
 
 -- Set screen dimensions
 
@@ -13,6 +15,10 @@ local screenHeight: uint16 <comptime> = 600
 InitWindow(screenWidth, screenHeight, "Game Engine") -- Create the window
 
 SetTargetFPS(60) -- Set the FPS limit
+
+-- Setup variables
+
+UIManager:AddWindow((Vector2){16, 16}, (Vector2){64, 256}, 2, BLACK, GRAY, LIGHTGRAY, true, 2, "Win", 2, 10)
 
 -- Main Loop
 
@@ -24,7 +30,7 @@ while not WindowShouldClose() do
 	Mouse:Update()
 
 	if Mouse.LMBPressed then
-		InformationHandler:RaiseInfo("Scene index was increased.")
+		InformationHandler:Log("Scene index was increased.")
 	end
 
 	if Mouse.RMBPressed then
@@ -35,6 +41,8 @@ while not WindowShouldClose() do
 	BeginDrawing()
 
 		Renderer:BeginRender() -- Render the available scene
+
+		UIManager:UpdateWindows()
 
 		Renderer:EndRender() -- Stop rendering to allow the loop to continue
 
