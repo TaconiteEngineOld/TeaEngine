@@ -3,9 +3,11 @@
 require "raylib"
 require "iterators"
 require "engine/information-handler/information-handler"
-require "engine/gui/gui"
+require "engine/utilities/"
 require "engine/mouse/mouse"
 require "engine/render/render"
+require "engine/gui/gui"
+require "engine/gui/uimanager"
 
 -- Set screen dimensions
 
@@ -18,7 +20,14 @@ SetTargetFPS(60) -- Set the FPS limit
 
 -- Setup variables
 
-UIManager:AddWindow((Vector2){16, 16}, (Vector2){64, 256}, 2, BLACK, GRAY, LIGHTGRAY, true, 2, "Win", 2, 10)
+--                             X   Y               W    H   P     BC    BG         FG  Menu  MS   MT   MP MTS
+UIManager:AddWindow("Main demo window", (Vector2){16, 16}, (Vector2){512, 512}, 4, (Color){0, 0, 0, 255}, (Color){23, 29, 32, 255}, (Color){171, 209, 227, 255}, true, 40, "Window 1", 2, 32) -- Create a window
+
+UIManager:AddButtonToWindow("Main demo window", "A demo button")
+
+local windowDetails = UIManager:GetWindow("Main demo window")
+
+print(windowDetails.borderSize)
 
 -- Main Loop
 
@@ -41,6 +50,8 @@ while not WindowShouldClose() do
 	BeginDrawing()
 
 		Renderer:BeginRender() -- Render the available scene
+
+		ClearBackground(RAYWHITE)
 
 		UIManager:UpdateWindows()
 
