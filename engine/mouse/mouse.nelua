@@ -12,9 +12,14 @@ local MouseClass = @record {
 	MMBPressed: boolean,
 	RMBPressed: boolean, 
 
+	LMBReleased: boolean,
+
 	scrollWheelMove: cint,
 
-	insideUIELement: boolean,
+	insideUIElement: boolean,
+
+	isGrabbing: boolean,
+	windowGrabbed: string,
 }
 
 function MouseClass:Update()
@@ -27,6 +32,8 @@ function MouseClass:Update()
 
 	self.LMBPressed = IsMouseButtonPressed(0)
 	self.RMBPressed = IsMouseButtonPressed(1)
+
+	self.LMBReleased = IsMouseButtonReleased(0)
 
 	self.scrollWheelMove = GetMouseWheelMove()
 end

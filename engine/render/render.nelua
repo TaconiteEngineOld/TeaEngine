@@ -9,11 +9,6 @@ global Renderer: RendererClass
 function RendererClass:BeginRender()
 	self.isRendering = true
 
-	ClearBackground(RAYWHITE)
-
-	DrawText("Engine Demo!", 32, 32, 20, LIGHTGRAY)
-end
-
-function RendererClass:EndRender()
-	self.isRendering = false
+	ClearBackground((Color){12, 15, 16})
+	UIManager:Update()
 end

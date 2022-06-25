@@ -1,0 +1,62 @@
+local UIManagerClass = @record {
+	Windows: vector(UIWindow),
+}
+
+function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string, uWidgetType: string, uWidgetText: string, uWidgetFontSize: cint, uWidgetPosition: Vector2, uWidgetSize: Vector2)
+	for i: usize, window: *UIWindow in mipairs(self.Windows) do
+		if window.windowName == uWindowName then
+			window.Widgets:push((Widget){uWidgetName, uWidgetType, uWidgetText, uWidgetFontSize, uWidgetPosition, uWidgetSize, window.borderSize, true, window.borderColor, window.bgColor, window.fgColor, (Vector2){window.pos.x, window.pos.y}})
+			window.Widgets[#window.Widgets - 1]:Init()
+			EventManager:AddEvent(uWidgetName)
+		end
+	end
+end
+
+function UIManagerClass:Update() 
+	for i: usize, window: *UIWindow in mipairs(self.Windows) do
+		window:Update()
+		window:Draw()
+		for i: usize, widget: *Widget in mipairs(window.Widgets) do
+			widget.windowPosition = window.pos
+			widget:UpdateVW()
+			widget:Update()
+		end
+	end
+end
+
+function UIManagerClass:ClearWindows()
+	self.Windows:clear()
+end
+
+function UIManagerClass:AddWindow(uMenuBarText: string, uWindowName: string, uSize: Vector2, uPosition: Vector2, uBorderColor: Color, uFGColor: Color, uBGColor: Color, uMenuTextPadding: cint, uMenuFontSize: cint, uMenuBarSize: cint, uBorderSize: cint, uMenuBarEnabled: boolean)
+	self.Windows:push((UIWindow){uMenuBarText, uWindowName, uSize, uPosition, uBorderColor, uFGColor, uBGColor, 0, uMenuTextPadding, uMenuFontSize, uMenuBarSize, uBorderSize, uMenuBarEnabled})
+	self.Windows[#self.Windows - 1]:Init()
+	self:AddWidget(uWindowName, uWindowName.."MinimiseButton", "Button", "", 6, (Vector2){self.Windows[#self.Windows - 1].size.x - self.Windows[#self.Windows - 1].borderSize * 6 - 20, self.Windows[#self.Windows - 1].borderSize * 2}, (Vector2){self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize, self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize})
+	self:AddWidget(uWindowName, uWindowName.."ResetButton", "Button", "", 6, (Vector2){self.Windows[#self.Windows - 1].size.x - self.Windows[#self.Windows - 1].borderSize * 6, self.Windows[#self.Windows - 1].borderSize * 2}, (Vector2){self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize, self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize})
+end
+
+function UIManagerClass:ToggleWindow(uWindowName: string)
+	for i: usize, window: *UIWindow in mipairs(self.Windows) do
+		if window.windowName == uWindowName then
+			window.isShown = not window.isShown
+		end
+	end
+end
+
+function UIManagerClass:ResetWindowPosition(uWindowName: string)
+	for i: usize, window: *UIWindow in mipairs(self.Windows) do
+		if window.windowName == uWindowName then
+			window.pos = window.originalPosition
+		end
+	end
+end
+
+function UIManagerClass:GetWindow(uWindowName: string): UIWindow
+	for i: usize, window in ipairs(self.Windows) do
+		return window
+	end
+
+	return (UIWindow){} 
+end
+
+global UIManager: UIManagerClass

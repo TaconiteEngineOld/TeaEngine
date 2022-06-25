@@ -1,0 +1,23 @@
+local EngineGUIClass = @record {}
+
+function EngineGUIClass:Startup()
+	UIManager:AddWindow("Hierarchy", "HierarchyWindow", (Vector2){480, 920}, (Vector2){0, 0}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4, true)
+	--UIManager:AddWidget("HierarchyWindow", "HierarchyWindowMinimiseButton", "Button", "", 6, (Vector2){436, 8}, (Vector2){16, 16})
+	--UIManager:AddWidget("HierarchyWindow", "HierarchyWindowResetButton", "Button", "", 6, (Vector2){456, 8}, (Vector2){16, 16})
+
+	EventManager:AddEvent("ResetWindowDebounce")
+end
+
+function EngineGUIClass:UpdateGUI()
+	if EventManager:GetEvent("HierarchyWindowMinimiseButton").fired then
+		UIManager:ToggleWindow("HierarchyWindow")
+		InformationHandler:Log("Toggled window")
+	end
+
+	if EventManager:GetEvent("HierarchyWindowResetButton").fired then
+		UIManager:ResetWindowPosition("HierarchyWindow")
+		InformationHandler:Log("Reset window position.")
+	end
+end
+
+global EngineGUI: EngineGUIClass

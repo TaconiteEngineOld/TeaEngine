@@ -6,14 +6,39 @@ global Widget = @record {
 	widgetName: string,
 	widgetType: string,
 
-	-- Booleans
-	spaceOccupied: boolean,
-	isHighlighted: boolean,
-	isDown: boolean,
+	widgetText: string,
+
+	-- Cints	
+	fontSize: cint,
+
 
 	-- Vector2s
+	position: Vector2,
+	size: Vector2,
+
+	-- Engine dealt Cints
+	borderSize: cint,
+
+	-- Booleans
+	spaceOccupied: boolean,
+
+	-- Engine dealt Colours
+	borderColor: Color,
+	bgColor: Color,
+	fgColor: Color,
+
+	-- Engine dealt Vector2s
 	tl: Vector2,
-	br: Vector2
+	br: Vector2,
+
+	tlW: Vector2,
+	brW: Vector2,
+
+	windowPosition: Vector2,
+
+	-- Engine dealt Booleans
+	isHighlighted: boolean,
+	isDown: boolean,
 }
 
 global UIWindow = @record {
@@ -39,44 +64,128 @@ global UIWindow = @record {
 	borderSize: cint,
 	
 	-- Booleans
-	widgetSpotsAvailable: [WIDGET_AMOUNT]boolean,
 	menuBarEnabled: boolean,
+	
+	-- Uninitialised Booleans
+	spaceOccupied: boolean,
+	isShown: boolean,
+	moving: boolean,
 
-	-- Strings
-	menuBarText: string,
+	-- Uninitialised Cints
+	grabDebounce: cint,
 
 	-- Widgets
-	Widgets: [WIDGET_AMOUNT]Widget
+	Widgets: vector(Widget),
+	widgetSpotsAvailable: vector(boolean),
+
+	-- Uninitialised Vector2s
+	originalPosition: Vector2,
+	mouseOffset: Vector2,
 }
 
-function Widget:Draw() 
-	if self.widgetType == "Button" then
-		if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tl, self.br) then
-			self.isHighlighted = true
-		else
-			self.isHighlighted = false
-		end
+function Widget:Init()
+	self.tl.x = self.position.x
+	self.tl.y = self.position.y
 
-		if self.isHighlighted and Mouse.LMBDown then
-			self.isDown = true		
-		else
-			self.isDown = false
-		end
-	else
-		InformationHandler:Warn("Unaware of the widget type")
-	end
+	self.br.x = self.size.x
+	self.br.y = self.size.y
 end
 
-function Widget:Update() 
+-- 32, 80
+
+function Widget:UpdateVW()
+	self.tlW.x = self.tl.x + self.windowPosition.x
+	self.tlW.y = self.tl.y + self.windowPosition.y
+
+	self.brW.x = self.br.x + self.tl.x --[[/ 2]] + self.windowPosition.x
+	self.brW.y = self.br.y + self.tl.y --[[/ 2]] + self.windowPosition.y
+end
+
+-- 96 112
+
+function Widget:Draw()
+
+	if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tlW, self.brW) then
+		self.isHighlighted = true
+		Mouse.insideUIElement = true
+	else
+		self.isHighlighted = false
+		Mouse.insideUIElement = false
+	end
+
+	if self.isDown then
+		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 20, self.bgColor.g + 20, self.bgColor.b + 20, self.bgColor.a})
+	elseif self.isHighlighted then
+		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 10, self.bgColor.g + 10, self.bgColor.b + 10, self.bgColor.a})
+	else
+		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
+	end
+
+	DrawText(self.widgetText, self.tlW.x + self.borderSize * 2, self.tlW.y + self.borderSize * 2, self.fontSize, self.fgColor)
+end
+
+function Widget:Update()
+	if self.spaceOccupied then
+		if self.widgetType == "Button" then
+			if self.isHighlighted and Mouse.LMBPressed then
+				EventManager:FireEvent(self.widgetName)
+			end
+
+			if self.isHighlighted and Mouse.LMBDown then
+				self.isDown = true		
+			else
+				self.isDown = false
+			end
+		else
+			InformationHandler:Warn("Unaware of the widget type")
+		end
+	end
+	
 	self:Draw()
 end
 
+function UIWindow:Init()
+	self.isShown = true
+
+	self.originalPosition = self.pos
+end
+
+function UIWindow:Update()
+	if Mouse.insideUIElement then
+		self.grabDebounce = 0
+	end
+
+	if not Mouse.insideUIElement then
+		self.grabDebounce = self.grabDebounce + 1
+	end
+
+	if Mouse.LMBPressed then	
+		if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, (Vector2){self.pos.x, self.pos.y}, (Vector2){self.pos.x + self.size.x, self.pos.y + self.menuBarSize}) and self.grabDebounce >= 3 then
+				self.mouseOffset = (Vector2){self.pos.x - Mouse.x, self.pos.y - Mouse.y}
+				Mouse.isGrabbing = true
+				Mouse.windowGrabbed = self.windowName
+				self.grabDebounce = 0
+		end
+	elseif Mouse.LMBReleased then
+		Mouse.isGrabbing = false
+	end
+
+	if Mouse.isGrabbing and Mouse.windowGrabbed == self.windowName and not Mouse.insideUIElement then
+		self.pos = (Vector2){Mouse.x + self.mouseOffset.x, Mouse.y + self.mouseOffset.y}
+	end
+end
+
 function UIWindow:Draw()
-	if self.borderSize > 0 then
-		DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.size.y, self.borderColor)
-		DrawRectangle(self.pos.x + self.borderSize, self.pos.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
-	else
-		DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.size.y, self.bgColor)
+	if self.isShown then
+		if self.borderSize > 0 then
+			DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.size.y, self.borderColor)
+			DrawRectangle(self.pos.x + self.borderSize, self.pos.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
+		else
+			DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.size.y, self.bgColor)
+		end
 	end
 
 	if self.menuBarEnabled then

@@ -1,14 +1,5 @@
 local UtilityClass = @record {}
 
-function UtilityClass:NextSpot(spotsAvailabe: [20]boolean): cint
-	for i: usize, spotAvailable: boolean in ipairs(spotsAvailabe) do
-		return i
-	end
-
-	InformationHandler:RaiseError(2, "There are no more spots available. (Error raised in UtilityClass:NextSpot)")
-	return -1
-end
-
 function UtilityClass:IsInsideQuad(point: Vector2, tl: Vector2, br: Vector2): boolean
 	if point.x >= tl.x and point.x <= br.x and point.y >= tl.y and point.y <= br.y then
 		return true
