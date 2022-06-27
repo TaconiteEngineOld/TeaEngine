@@ -1,0 +1,20 @@
+local EngineGUIClass = @record {
+	screenWidth: uint16,
+	screenHeight: uint16
+}
+
+function EngineGUIClass:Init()
+	self.screenWidth = GetScreenWidth()
+	self.screenHeight = GetScreenHeight()
+end
+
+function EngineGUIClass:Startup()
+	self:Init()
+
+	UIManager:AddWindow("Hierarchy", "HierarchyWindow", (Vector2){self.screenWidth / 4, self.screenHeight - self.screenWidth / 6}, (Vector2){0, 0}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4, true)
+	UIManager:AddWindow("Files", "FileWindow", (Vector2){self.screenWidth, self.screenHeight - UIManager:GetWindow("HierarchyWindow").size.y + UIManager:GetWindow("HierarchyWindow").borderSize * 2 - UIManager:GetWindow("HierarchyWindow").borderSize * 2}, (Vector2){0, UIManager:GetWindow("HierarchyWindow").size.y}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4, true)
+end
+
+function EngineGUIClass:UpdateGUI() end
+
+global EngineGUI: EngineGUIClass

@@ -1,0 +1,41 @@
+local EventManagerRecord = @record {
+	Events: vector(Event)
+}
+
+function EventManagerRecord:RevealEvents()
+	for i: usize, event in ipairs(self.Events) do
+		InformationHandler:Log(event.name)
+	end
+end
+
+function EventManagerRecord:AddEvent(uEventName: string)
+	self.Events:push((Event){uEventName, false})
+end
+
+function EventManagerRecord:FireEvent(uEventName: string)
+	for i: usize, event: *Event in mipairs(self.Events) do
+		if event.name == uEventName then
+			event.fired = true
+		end
+	end
+end
+
+function EventManagerRecord:Cleanup(uEventName: string)
+	for i: usize, event: *Event in mipairs(self.Events) do
+		if event.name == uEventName then
+			event.fired = false
+		end
+	end
+end
+
+function EventManagerRecord:GetEvent(uEventName: string)
+	for i: usize, event in ipairs(self.Events) do
+		if event.name == uEventName then
+			return event
+		end
+	end
+
+	return (Event){}
+end
+
+global EventManager: EventManagerRecord

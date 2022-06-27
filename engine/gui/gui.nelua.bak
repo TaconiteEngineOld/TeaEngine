@@ -1,127 +1,203 @@
--- Requires raylib
+global WIDGET_AMOUNT <comptime> = 20
 
-local UIButton = @record {
-	name: string,
-	isOccupied: boolean,
+global Widget = @record {
 
-	isHighlighted: boolean,
-	isDown: boolean,
-	tl: Vector2,
-	br: Vector2
-}
+	-- Strings
+	widgetName: string,
+	widgetType: string,
 
-local UIWindow = @record {
-	windowName: string,
+	widgetText: string,
 
+	-- Cints	
+	fontSize: cint,
+
+	-- Vector2s
 	position: Vector2,
 	size: Vector2,
-	borderColor: Color,
+
+	-- Engine dealt Cints
 	borderSize: cint,
+
+	-- Booleans
+	spaceOccupied: boolean,
+
+	-- Engine dealt Colours
+	borderColor: Color,
 	bgColor: Color,
 	fgColor: Color,
 
-	menuBarAvailable: boolean,
+	-- Engine dealt Vector2s
+	tl: Vector2,
+	br: Vector2,
+
+	tlW: Vector2,
+	brW: Vector2,
+
+	windowPosition: Vector2,
+
+	-- Engine dealt Booleans
+	isHighlighted: boolean,
+	isDown: boolean,
+}
+
+global UIWindow = @record {
+
+	-- Strings
+	menuBarText: string,
+	windowName: string,
+
+	-- Vector2s
+	size: Vector2,
+	pos: Vector2,
+
+	-- Colors
+	borderColor: Color,
+	bgColor: Color,
+	fgColor: Color,
+
+	-- Cints
+	nextWidgetSpotAvailable: cint,
+	menuTextPadding: cint,
+	menuFontSize: cint,
 	menuBarSize: cint,
-	menuText: string,
-	textPad: cint,
-	fSize: cint,
+	borderSize: cint,
+	
+	-- Booleans
+	menuBarEnabled: boolean,
+	
+	-- Uninitialised Booleans
+	spaceOccupied: boolean,
+	isShown: boolean,
+	moving: boolean,
 
-	isOccupied: boolean
+	-- Uninitialised Cints
+	grabDebounce: cint,
+
+	-- Widgets
+	Widgets: vector(Widget),
+	widgetSpotsAvailable: vector(boolean),
+
+	-- Uninitialised Vector2s
+	originalPosition: Vector2,
+	mouseOffset: Vector2,
 }
 
-local UIManagerClass = @record {
-	spacesLeft: boolean,
-	UIWindows: [20]UIWindow,
-}
+function Widget:Init()
+	self.tl.x = self.position.x
+	self.tl.y = self.position.y
 
--- [[ Record functions ]] --
-
---[[function UIManagerClass:AddButtonToWindow(uWindowName: string, uButtonName: string)
-	for i: usize, window: *UIWindow in mipairs(self.UIWindows) do
-		window.buttons[window.nextButtonSpotFree] = (UIButton){name = uButtonName}
-
-		print(window.buttons[1].name)
-	end
+	self.br.x = self.size.x
+	self.br.y = self.size.y
 end
 
-function UI:UpdateNextSpotFree(): cint
-	for i: usize, window: *UIWindow in mipairs(self.UIWindows) do
-		for i: usize, freeSpot: boolean in ipairs(window.buttonSpotsFree) do
-			if freeSpot then
-				InformationHandler:Log("Found a spot!")
-				self.spacesLeft = true
-				return i 
+-- 32, 80
+
+function Widget:UpdateVW()
+	self.tlW.x = self.tl.x + self.windowPosition.x
+	self.tlW.y = self.tl.y + self.windowPosition.y
+
+	self.brW.x = self.br.x + self.tl.x --[[/ 2]] + self.windowPosition.x
+	self.brW.y = self.br.y + self.tl.y --[[/ 2]] + self.windowPosition.y
+end
+
+-- 96 112
+
+function Widget:Draw()
+
+	if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tlW, self.brW) then
+		self.isHighlighted = true
+		Mouse.insideUIElement = true
+		EventManager:FireEvent("ResetWindowDebounce")
+	else
+		print("Not inside a widget anymore", math.random(0, 1000))
+		self.isHighlighted = false
+		Mouse.insideUIElement = false
+	end
+
+	if self.isDown then
+		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 20, self.bgColor.g + 20, self.bgColor.b + 20, self.bgColor.a})
+	elseif self.isHighlighted then
+		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 10, self.bgColor.g + 10, self.bgColor.b + 10, self.bgColor.a})
+	else
+		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
+	end
+
+	DrawText(self.widgetText, self.tlW.x + self.borderSize * 2, self.tlW.y + self.borderSize * 2, self.fontSize, self.fgColor)
+end
+
+function Widget:Update()
+	if self.spaceOccupied then
+		if self.widgetType == "Button" then
+			if self.isHighlighted and Mouse.LMBPressed then
+				EventManager:FireEvent(self.widgetName)
 			end
+
+			if self.isHighlighted and Mouse.LMBDown then
+				self.isDown = true		
+			else
+				self.isDown = false
+			end
+		else
+			InformationHandler:Warn("Unaware of the widget type")
 		end
 	end
 	
-	InformationHandler:Warn("No button spaces left!")
-	self.spacesLeft = false
-	return -1
-end--]]
+	self:Draw()
+end
 
-function UIButton:Update()
-	if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tl, self.br) then
-		self.isHighlighted = true
-	else
-		self.isHighlighted = false
+function UIWindow:Init()
+	self.isShown = true
+
+	self.originalPosition = self.pos
+end
+
+function UIWindow:Update()
+	if EventManager:GetEvent("ResetWindowDebounce").fired then
+		self.grabDebounce = 0
 	end
 
-	if self.isHighlighted and Mouse.LMBDown then
-		self.isDown = true
-	else
-		self.isDown = false	
+	if Mouse.insideUIElement then
+		self.grabDebounce = 0
+	end
+
+	if not Mouse.insideUIElement then
+		self.grabDebounce = self.grabDebounce + 1
+
+		--print("Adding to debounce. Debounce value is: "..self.grabDebounce)
+	end
+
+	if Mouse.LMBPressed then	
+		if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, (Vector2){self.pos.x, self.pos.y}, (Vector2){self.pos.x + self.size.x, self.pos.y + self.menuBarSize}) and self.grabDebounce >= 3 then
+				self.mouseOffset = (Vector2){self.pos.x - Mouse.x, self.pos.y - Mouse.y}
+				Mouse.isGrabbing = true
+				Mouse.windowGrabbed = self.windowName
+				self.grabDebounce = 0
+		end
+	elseif Mouse.LMBReleased then
+		Mouse.isGrabbing = false
+	end
+
+	if Mouse.isGrabbing and Mouse.windowGrabbed == self.windowName and not Mouse.insideUIElement then
+		self.pos = (Vector2){Mouse.x + self.mouseOffset.x, Mouse.y + self.mouseOffset.y}
 	end
 end
 
 function UIWindow:Draw()
-	if self.borderSize > 0 then
-		DrawRectangle(self.position.x, self.position.y, self.size.x, self.size.y, self.borderColor)
-		DrawRectangle(self.position.x + self.borderSize, self.position.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
-	else
-		DrawRectangle(self.position.x, self.position.y, self.size.x, self.size.y, self.bgColor)
-	end
-
-	if self.menuBarAvailable then
-		DrawRectangle(self.position.x, self.position.y, self.size.x, self.menuBarSize, self.borderColor) 
-		DrawRectangle(self.position.x + self.borderSize, self.position.y + self.borderSize, self.size.x - self.borderSize * 2, self.menuBarSize - self.borderSize * 2, self.bgColor)
-		DrawText(self.menuText, self.position.x	+ self.borderSize + self.textPad, self.position.y + self.borderSize + self.textPad, self.fSize, self.fgColor)
-	end
-end
-
-function UIManagerClass:Initiate()
-	self.spacesLeft = true
-end
-
-function UIManagerClass:UpdateWindows()
-	for i: usize, window: *UIWindow in mipairs(self.UIWindows) do
-		window:Draw()		
-		for i: usize, button: *UIButton in mipairs(window.buttons) do
-			button:Update()
-		end
-	end
-end
-
-function UIManagerClass:AddWindow(uWindowName: string, uPosition: Vector2, uSize: Vector2, uBorderSize: cint, uBorderColor: Color, uBGColor: Color, uFGColor: Color, uMenuBarAvailable: boolean, uMenuBarSize: cint, uMenuText: string, uTextPad: cint, uFSize: cint)
-
-		--[[if self.spacesLeft then
-			self.UIWindows[self.nextWindowSpotFree] = (UIWindow){uWindowName, uPosition, uSize, uBorderColor, uBorderSize, uBGColor, uFGColor, uMenuBarAvailable, uMenuBarSize, uMenuText, uTextPad, uFSize, false}
+	if self.isShown then
+		if self.borderSize > 0 then
+			DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.size.y, self.borderColor)
+			DrawRectangle(self.pos.x + self.borderSize, self.pos.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
 		else
-			print(self.spacesLeft)
-			InformationHandler:RaiseError(2, "There are no window spaces left!")
-		end--]]
-end
-
-function UIManagerClass:GetWindow(uWindowName: string): UIWindow
-	for i: usize, window: UIWindow in ipairs(self.UIWindows) do
-		if window.windowName == uWindowName then
-			return window
+			DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.size.y, self.bgColor)
 		end
 	end
 
-	InformationHandler:Warn("No window found!")
-
-	return (UIWindow){}
+	if self.menuBarEnabled then
+		DrawRectangle(self.pos.x, self.pos.y, self.size.x, self.menuBarSize, self.borderColor) 
+		DrawRectangle(self.pos.x + self.borderSize, self.pos.y + self.borderSize, self.size.x - self.borderSize * 2, self.menuBarSize - self.borderSize * 2, self.bgColor)
+		DrawText(self.menuBarText, self.pos.x	+ self.borderSize + self.menuTextPadding, self.pos.y + self.borderSize + self.menuTextPadding, self.menuFontSize, self.fgColor)
+	end
 end
-
-global UIManager: UIManagerClass

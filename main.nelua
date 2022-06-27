@@ -1,33 +1,35 @@
 -- Get modules
 
+require "math"
+require "vector"
 require "raylib"
 require "iterators"
+
+require "engine/fileystem/filesystem"
 require "engine/information-handler/information-handler"
 require "engine/utilities/"
 require "engine/mouse/mouse"
-require "engine/render/render"
+require "engine/event/event"
+require "engine/event-manager/event-manager"
 require "engine/gui/gui"
-require "engine/gui/uimanager"
+require "engine/uimanager/uimanager"
+require "engine/render/render"
+require "engine/engine-gui/engine-gui"
 
 -- Set screen dimensions
 
-local screenWidth: uint16 <comptime> = 800
-local screenHeight: uint16 <comptime> = 600
+global screenWidth: uint16 = GetScreenWidth()
+global screenHeight: uint16 = GetScreenHeight()
 
 InitWindow(screenWidth, screenHeight, "Game Engine") -- Create the window
 
 SetTargetFPS(60) -- Set the FPS limit
 
--- Setup variables
+InformationHandler:Log("Project started on: "..fs.readfile('age.md'))
 
---                             X   Y               W    H   P     BC    BG         FG  Menu  MS   MT   MP MTS
-UIManager:AddWindow("Main demo window", (Vector2){16, 16}, (Vector2){512, 512}, 4, (Color){0, 0, 0, 255}, (Color){23, 29, 32, 255}, (Color){171, 209, 227, 255}, true, 40, "Window 1", 2, 32) -- Create a window
+EngineGUI:Startup()
 
-UIManager:AddButtonToWindow("Main demo window", "A demo button")
-
-local windowDetails = UIManager:GetWindow("Main demo window")
-
-print(windowDetails.borderSize)
+EventManager:RevealEvents()
 
 -- Main Loop
 
@@ -36,29 +38,22 @@ while not WindowShouldClose() do
 		goto ErrorRaised
 	end
 
-	Mouse:Update()
-
-	if Mouse.LMBPressed then
-		InformationHandler:Log("Scene index was increased.")
+	if Mouse.RMBPressed then
+		InformationHandler:RaiseError(1, "RMB was pressed, requesting an exit.")
 	end
 
+	EngineGUI:UpdateGUI()
+
+	Mouse:Update()
+
 	if Mouse.RMBPressed then
-		print("RMB was pressed")
 		InformationHandler:RaiseError(1, "RMB was pressed, requesting an exit.")
 	end
 
 	BeginDrawing()
-
 		Renderer:BeginRender() -- Render the available scene
-
-		ClearBackground(RAYWHITE)
-
-		UIManager:UpdateWindows()
-
-		Renderer:EndRender() -- Stop rendering to allow the loop to continue
-
 	EndDrawing()
-
+	
 end
 
 ::ErrorRaised::
