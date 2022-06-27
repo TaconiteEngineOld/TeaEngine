@@ -35,6 +35,8 @@ global Widget = @record {
 
 	-- Engine dealt Booleans
 	isHighlighted: boolean,
+	alwaysDrawn: boolean,
+	isShown: boolean,
 	isDown: boolean,
 }
 
@@ -101,18 +103,20 @@ end
 -- 96 112
 
 function Widget:Draw()
-	if self.isDown then
-		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
-		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 20, self.bgColor.g + 20, self.bgColor.b + 20, self.bgColor.a})
-	elseif self.isHighlighted then
-		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
-		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 10, self.bgColor.g + 10, self.bgColor.b + 10, self.bgColor.a})
-	else
-		DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
-		DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
+	if self.isShown or self.alwaysDrawn then
+		if self.isDown then
+			DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+			DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 20, self.bgColor.g + 20, self.bgColor.b + 20, self.bgColor.a})
+		elseif self.isHighlighted then
+			DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+			DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, (Color){self.bgColor.r + 10, self.bgColor.g + 10, self.bgColor.b + 10, self.bgColor.a})
+		else
+			DrawRectangle(self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y, self.size.x, self.size.y, self.borderColor)
+			DrawRectangle(self.position.x + self.windowPosition.x + self.borderSize, self.position.y + self.windowPosition.y + self.borderSize, self.size.x - self.borderSize * 2, self.size.y - self.borderSize * 2, self.bgColor)
+		end
+	
+		DrawText(self.widgetText, self.tlW.x + self.borderSize * 2, self.tlW.y + self.borderSize * 2, self.fontSize, self.fgColor)
 	end
-
-	DrawText(self.widgetText, self.tlW.x + self.borderSize * 2, self.tlW.y + self.borderSize * 2, self.fontSize, self.fgColor)
 end
 
 function Widget:Update()
@@ -142,8 +146,6 @@ function Widget:Update()
 end
 
 function UIWindow:Init()
-	self.isShown = true
-
 	self.originalPosition = self.pos
 end
 
