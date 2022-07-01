@@ -5,6 +5,8 @@ Tea engine is a game engine being wrote in nelua with a custom compilation syste
 * **Smaller scope** than game engines as Unity, this means you won't get distracted by the amount of tools, leading to faster and more productive. If there are too many tools you *may* get distracted by them or they may even get in your way.
 * **Focused** on what you *need* to make a game, if you don't need it, and it doesn't have a good, well thought out purpose it is not there.
 
+![Discord](https://img.shields.io/discord/992551570547949568?color=blue&label=Discord&style=for-the-badge)
+
 # Releases
 
 All releases will be posted in the [Github releases tab](https://github.com/TeaSpillStudios/TeaEngine/releases)
