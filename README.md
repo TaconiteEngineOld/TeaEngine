@@ -66,3 +66,7 @@ This project will probably be good and usable after a couple of months, please b
 * To help people make games for themselves and for others
 * To make a game engine anyone can use and not need to pay for anything at all.
 * To create a game engine for people to have fun with
+
+# Community
+
+[Discord](https://discord.gg/M7Qkgby2rm)
