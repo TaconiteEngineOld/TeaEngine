@@ -15,6 +15,9 @@ require "engine/gui/gui"
 require "engine/uimanager/uimanager"
 require "engine/render/render"
 require "engine/engine-gui/engine-gui"
+require "engine/transform/transform"
+require "engine/obj3d/object"
+require "engine/obj2d/object"
 
 -- Set screen dimensions
 
@@ -32,6 +35,9 @@ EngineGUI:Startup()
 EventManager:RevealEvents()
 
 -- Main Loop
+
+Renderer.isRenderingIntro = true
+Renderer:BeginRenderIntro()
 
 while not WindowShouldClose() do
 	if InformationHandler.isHaulted then

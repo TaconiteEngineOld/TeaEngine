@@ -139,6 +139,36 @@ Block {
       "require"
     }
   },
+  Call {
+    {
+      String {
+        "engine/transform/transform"
+      }
+    },
+    Id {
+      "require"
+    }
+  },
+  Call {
+    {
+      String {
+        "engine/obj3d/object"
+      }
+    },
+    Id {
+      "require"
+    }
+  },
+  Call {
+    {
+      String {
+        "engine/obj2d/object"
+      }
+    },
+    Id {
+      "require"
+    }
+  },
   VarDecl {
     "global",
     {
@@ -246,6 +276,29 @@ Block {
     },
     Id {
       "EventManager"
+    }
+  },
+  Assign {
+    {
+      DotIndex {
+        "isRenderingIntro",
+        Id {
+          "Renderer"
+        }
+      }
+    },
+    {
+      Boolean {
+        true
+      }
+    }
+  },
+  CallMethod {
+    "BeginRenderIntro",
+    {
+    },
+    Id {
+      "Renderer"
     }
   },
   While {

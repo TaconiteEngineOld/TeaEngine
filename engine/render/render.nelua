@@ -1,14 +1,52 @@
 require "engine/gui/gui"
 
 local RendererClass = @record {
-	isRendering: boolean
+	isRenderingIntro: boolean,
+	isRenderingFrames: boolean,
+	frameCount: cint,
+	realFrameCount: cint,
 }
+
+function RendererClass:BeginRenderIntro()
+	while self.isRenderingIntro do
+		if self.frameCount >= 48 then
+			self.isRenderingFrames = false
+		end
+
+		if self.frameCount >= 54 then
+			self.isRenderingIntro = false 
+		end
+
+		local texture: Texture2D
+
+		if self.isRenderingFrames then
+			texture = LoadTexture("engine/intro-manager/resources/frames/TeaEngineIntro-"..tostring(self.frameCount)..".png")
+		end
+
+		-- void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
+		BeginDrawing()
+		ClearBackground((Color){12, 15, 16, 255})
+
+		if self.isRenderingFrames then
+			DrawTexture(texture, 0, 0, WHITE);
+		end
+
+		EndDrawing()
+
+		self.realFrameCount = self.realFrameCount + 1
+
+		if self.realFrameCount % 4 == 0 then
+			self.frameCount = self.frameCount + 1
+		end
+	end
+end
+
+function RendererClass:BeginRender()
+	ClearBackground((Color){12, 15, 16, 255})
+	UIManager:Update()
+end
 
 global Renderer: RendererClass
 
-function RendererClass:BeginRender()
-	self.isRendering = true
-
-	ClearBackground((Color){12, 15, 16})
-	UIManager:Update()
-end
+Renderer.isRenderingIntro = true
+Renderer.isRenderingFrames = true

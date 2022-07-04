@@ -1,0 +1,7 @@
+global Object = @record{
+	Transform: Transform,
+}
+
+function Object:ResetPosition()
+	self.Transform.position = (Vector3){0, 0, 0}
+end
