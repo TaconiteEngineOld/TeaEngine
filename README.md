@@ -7,6 +7,16 @@ Tea engine is a game engine being wrote in nelua with a custom compilation syste
 
 ![Discord](https://img.shields.io/discord/992551570547949568?color=blue&label=Discord&style=for-the-badge)
 
+# Quick navigation
+
+| [Releases](https://github.com/TeaSpillStudios/TeaEngine#releases) |
+[Usage](https://github.com/TeaSpillStudios/TeaEngine#usage) |
+[Building from source](https://github.com/TeaSpillStudios/TeaEngine#building-from-source) |
+[FAQ](https://github.com/TeaSpillStudios/TeaEngine#faq) |
+[TODO](https://github.com/TeaSpillStudios/TeaEngine#todo) |
+[Goals](https://github.com/TeaSpillStudios/TeaEngine#goals) |
+[Community](https://github.com/TeaSpillStudios/TeaEngine#community) |
+
 # Releases
 
 All releases will be posted in the [Github releases tab](https://github.com/TeaSpillStudios/TeaEngine/releases)
@@ -66,3 +76,7 @@ This project will probably be good and usable after a couple of months, please b
 * To help people make games for themselves and for others
 * To make a game engine anyone can use and not need to pay for anything at all.
 * To create a game engine for people to have fun with
+
+# Community
+
+[Discord](https://discord.gg/M7Qkgby2rm)
