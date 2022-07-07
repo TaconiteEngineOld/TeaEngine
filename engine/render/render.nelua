@@ -1,11 +1,14 @@
-require "engine/gui/gui"
-
 local RendererClass = @record {
 	isRenderingIntro: boolean,
 	isRenderingFrames: boolean,
 	frameCount: cint,
 	realFrameCount: cint,
 }
+
+function RendererClass:DrawBoxWithOutlined(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
+	DrawRectangle(pos.x, pos.y, size.x, size.y, borderColor)
+	DrawRectangle(pos.x + pad, pos.y + pad, size.x - pad * 2, size.y - pad * 2, bgColor)
+end
 
 function RendererClass:BeginRenderIntro()
 	while self.isRenderingIntro do
@@ -17,10 +20,10 @@ function RendererClass:BeginRenderIntro()
 			self.isRenderingIntro = false 
 		end
 
-		local texture: Texture2D
+		local localTexture: Texture2D
 
 		if self.isRenderingFrames then
-			texture = LoadTexture("engine/intro-manager/resources/frames/TeaEngineIntro-"..tostring(self.frameCount)..".png")
+			localTexture = LoadTexture("engine/intro-manager/resources/frames/TeaEngineIntro-"..tostring(self.frameCount)..".png")
 		end
 
 		-- void DrawTexture(Texture2D texture, int posX, int posY, Color tint);
@@ -28,7 +31,7 @@ function RendererClass:BeginRenderIntro()
 		ClearBackground((Color){12, 15, 16, 255})
 
 		if self.isRenderingFrames then
-			DrawTexture(texture, 0, 0, WHITE);
+			DrawTexture(localTexture, 0, 0, WHITE);
 		end
 
 		EndDrawing()
@@ -49,6 +52,10 @@ function RendererClass:SetupEngineUI()
 	--[[ Create widgets for the inspector ]]--
 	UIManager:AddWidget("InspectorWindow", "PlayButton", "Button", "Play", 12, (Vector2){16, 48}, (Vector2){40,24})
 	UIManager:AddWidget("InspectorWindow", "StopButton", "Button", "Stop", 12, (Vector2){72, 48}, (Vector2){40,24})
+
+	--[[ Create widgets for the hierarchy ]]--
+	UIManager:AddWidget("HierarchyWindow", "PlayButton", "Button", "Add", 12, (Vector2){16, 36}, (Vector2){40, 24})
+	UIManager:AddWidget("HierarchyWindow", "SelectButton", "Selectable", "A selectable", 12, (Vector2){16, 64}, (Vector2){40, 24})
 end
 
 function RendererClass:RenderEngineUI()

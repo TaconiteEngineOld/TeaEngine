@@ -8,4 +8,9 @@ function UtilityClass:IsInsideQuad(point: Vector2, tl: Vector2, br: Vector2): bo
 	return false
 end
 
+function UtilityClass:DrawBoxWithOutline(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
+	DrawRectangle(pos.x, pos.y, size.x, size.y, borderColor)
+	DrawRectangle(pos.x + pad, pos.y + pad, size.x - pad * 2, size.y - pad * 2, bgColor)
+end
+
 global Utility: UtilityClass

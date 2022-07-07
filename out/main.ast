@@ -172,16 +172,6 @@ Block {
   Call {
     {
       String {
-        "engine/engine-gui/engine-gui"
-      }
-    },
-    Id {
-      "require"
-    }
-  },
-  Call {
-    {
-      String {
         "engine/transform/transform"
       }
     },

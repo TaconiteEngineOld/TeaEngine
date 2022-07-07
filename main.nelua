@@ -19,7 +19,6 @@ global screenWidth: uint16 = GetScreenWidth()
 global screenHeight: uint16 = GetScreenHeight()
 require "engine/render/render"
 
-require "engine/engine-gui/engine-gui"
 require "engine/transform/transform"
 require "engine/obj3d/object"
 require "engine/obj2d/object"
