@@ -41,11 +41,46 @@ function RendererClass:BeginRenderIntro()
 	end
 end
 
-function RendererClass:BeginRender()
+function RendererClass:SetupEngineUI()
+	--[[ Create windows (Hierarchy, Inspector) ]]--
+	UIManager:AddWindow("Hierarchy", "HierarchyWindow", (Vector2){screenWidth / 4, screenHeight - screenHeight / 4}, (Vector2){0, 0}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4 ,true)
+	UIManager:AddWindow("Inspector", "InspectorWindow", (Vector2){screenWidth / 4, screenHeight / 4}, (Vector2){screenWidth / 4, 0}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4, true)
+
+	--[[ Create widgets for the inspector ]]--
+	UIManager:AddWidget("InspectorWindow", "PlayButton", "Button", "Play", 12, (Vector2){16, 48}, (Vector2){40,24})
+	UIManager:AddWidget("InspectorWindow", "StopButton", "Button", "Stop", 12, (Vector2){72, 48}, (Vector2){40,24})
+end
+
+function RendererClass:RenderEngineUI()
+	local EngineGUIClass = @record {
+		screenWidth: uint16,
+		screenHeight: uint16
+	}
+	
+	function EngineGUIClass:Init()
+		screenWidth = GetScreenWidth()
+		screenHeight = GetScreenHeight()
+	end
+end
+
+function RendererClass:Render()
 	ClearBackground((Color){12, 15, 16, 255})
 	UIManager:Update()
 end
 
+function RendererClass:Init()
+	--[[ Show the intro screen ]]--
+	self:BeginRenderIntro()
+	
+	--[[ Define screen width variables ]]--
+	screenWidth = GetScreenWidth()
+	screenHeight = GetScreenHeight()
+
+	-- [[ Setup the engine UI ]] --
+	self:SetupEngineUI()
+end
+
+-- [[ Create a global renderer ]] --
 global Renderer: RendererClass
 
 Renderer.isRenderingIntro = true

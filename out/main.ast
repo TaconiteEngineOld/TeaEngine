@@ -119,6 +119,46 @@ Block {
       "require"
     }
   },
+  VarDecl {
+    "global",
+    {
+      IdDecl {
+        "screenWidth",
+        Id {
+          "uint16"
+        }
+      }
+    },
+    {
+      Call {
+        {
+        },
+        Id {
+          "GetScreenWidth"
+        }
+      }
+    }
+  },
+  VarDecl {
+    "global",
+    {
+      IdDecl {
+        "screenHeight",
+        Id {
+          "uint16"
+        }
+      }
+    },
+    {
+      Call {
+        {
+        },
+        Id {
+          "GetScreenHeight"
+        }
+      }
+    }
+  },
   Call {
     {
       String {
@@ -263,11 +303,11 @@ Block {
     }
   },
   CallMethod {
-    "Startup",
+    "Init",
     {
     },
     Id {
-      "EngineGUI"
+      "Renderer"
     }
   },
   CallMethod {
@@ -276,29 +316,6 @@ Block {
     },
     Id {
       "EventManager"
-    }
-  },
-  Assign {
-    {
-      DotIndex {
-        "isRenderingIntro",
-        Id {
-          "Renderer"
-        }
-      }
-    },
-    {
-      Boolean {
-        true
-      }
-    }
-  },
-  CallMethod {
-    "BeginRenderIntro",
-    {
-    },
-    Id {
-      "Renderer"
     }
   },
   While {
@@ -355,14 +372,6 @@ Block {
         }
       },
       CallMethod {
-        "UpdateGUI",
-        {
-        },
-        Id {
-          "EngineGUI"
-        }
-      },
-      CallMethod {
         "Update",
         {
         },
@@ -404,7 +413,7 @@ Block {
         }
       },
       CallMethod {
-        "BeginRender",
+        "Render",
         {
         },
         Id {

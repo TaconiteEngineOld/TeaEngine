@@ -13,7 +13,12 @@ require "engine/event/event"
 require "engine/event-manager/event-manager"
 require "engine/gui/gui"
 require "engine/uimanager/uimanager"
+
+--[[ Define variables for renderer ]]--
+global screenWidth: uint16 = GetScreenWidth()
+global screenHeight: uint16 = GetScreenHeight()
 require "engine/render/render"
+
 require "engine/engine-gui/engine-gui"
 require "engine/transform/transform"
 require "engine/obj3d/object"
@@ -30,14 +35,11 @@ SetTargetFPS(60) -- Set the FPS limit
 
 InformationHandler:Log("Project started on: "..fs.readfile('age.md'))
 
-EngineGUI:Startup()
+Renderer:Init()
 
 EventManager:RevealEvents()
 
 -- Main Loop
-
-Renderer.isRenderingIntro = true
-Renderer:BeginRenderIntro()
 
 while not WindowShouldClose() do
 	if InformationHandler.isHaulted then
@@ -48,8 +50,6 @@ while not WindowShouldClose() do
 		InformationHandler:RaiseError(1, "RMB was pressed, requesting an exit.")
 	end
 
-	EngineGUI:UpdateGUI()
-
 	Mouse:Update()
 
 	if Mouse.RMBPressed then
@@ -57,7 +57,7 @@ while not WindowShouldClose() do
 	end
 
 	BeginDrawing()
-		Renderer:BeginRender() -- Render the available scene
+		Renderer:Render() -- Render the available scene
 	EndDrawing()
 	
 end

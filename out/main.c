@@ -194,7 +194,7 @@ typedef struct nlmulret_nlboolean_nlint64_engine_event_event_Event {
 } nlmulret_nlboolean_nlint64_engine_event_event_Event;
 typedef struct nelua_vector_Event_ nelua_vector_Event_;
 typedef nelua_vector_Event_* nelua_vector_Event__ptr;
-typedef nlmulret_nlboolean_nlint64_engine_event_event_Event (*function_4upzrgk1oTiT6fHbP)(nelua_vector_Event__ptr, int64_t);
+typedef nlmulret_nlboolean_nlint64_engine_event_event_Event (*function_QJerhEgmcBZoG85t)(nelua_vector_Event__ptr, int64_t);
 typedef struct nelua_span_Event_ nelua_span_Event_;
 typedef engine_event_event_Event* engine_event_event_Event_arr0_ptr;
 struct nelua_span_Event_ {
@@ -210,12 +210,12 @@ struct nelua_vector_Event_ {
   nelua_GCAllocator allocator;
 };
 NELUA_STATIC_ASSERT(sizeof(nelua_vector_Event_) == 24 && NELUA_ALIGNOF(nelua_vector_Event_) == 8, "Nelua and C disagree on type size or align");
-typedef struct nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64 {
-  function_4upzrgk1oTiT6fHbP r1;
+typedef struct nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64 {
+  function_QJerhEgmcBZoG85t r1;
   nelua_vector_Event__ptr r2;
   int64_t r3;
-} nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64;
-static NELUA_INLINE nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64 nelua_ipairs_1(nelua_vector_Event__ptr a);
+} nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64;
+static NELUA_INLINE nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64 nelua_ipairs_1(nelua_vector_Event__ptr a);
 static NELUA_INLINE nlmulret_nlboolean_nlint64_engine_event_event_Event nelua_ipairs_next(nelua_vector_Event__ptr a_1, int64_t k);
 static NELUA_NORETURN void nelua_panic_cstring(const char* s);
 static NELUA_INLINE void* nelua_assert_deref(void* p);
@@ -226,13 +226,13 @@ typedef struct nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr {
   int64_t r2;
   engine_event_event_Event_ptr r3;
 } nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr;
-typedef nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr (*function_4ZwuBM5aPgLeW3DFn)(nelua_vector_Event__ptr, int64_t);
-typedef struct nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64 {
-  function_4ZwuBM5aPgLeW3DFn r1;
+typedef nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr (*function_4csjbs3efaCZE5UAR)(nelua_vector_Event__ptr, int64_t);
+typedef struct nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64 {
+  function_4csjbs3efaCZE5UAR r1;
   nelua_vector_Event__ptr r2;
   int64_t r3;
-} nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64;
-static NELUA_INLINE nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64 nelua_mipairs_1(nelua_vector_Event__ptr a);
+} nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64;
+static NELUA_INLINE nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64 nelua_mipairs_1(nelua_vector_Event__ptr a);
 static NELUA_INLINE nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr nelua_mipairs_next(nelua_vector_Event__ptr a_2, int64_t k);
 typedef struct engine_gui_gui_UIWindow engine_gui_gui_UIWindow;
 typedef engine_gui_gui_UIWindow* engine_gui_gui_UIWindow_ptr;
@@ -243,7 +243,7 @@ typedef struct nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr {
 } nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr;
 typedef struct nelua_vector_UIWindow_ nelua_vector_UIWindow_;
 typedef nelua_vector_UIWindow_* nelua_vector_UIWindow__ptr;
-typedef nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr (*function_bzzBLj5mYD5sVgkZ)(nelua_vector_UIWindow__ptr, int64_t);
+typedef nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr (*function_4VVrTWnnnN83DMYKf)(nelua_vector_UIWindow__ptr, int64_t);
 typedef struct nelua_span_UIWindow_ nelua_span_UIWindow_;
 typedef struct nelua_vector_Widget_ nelua_vector_Widget_;
 typedef struct nelua_span_Widget_ nelua_span_Widget_;
@@ -333,12 +333,12 @@ struct engine_gui_gui_Widget {
   bool isDown;
 };
 NELUA_STATIC_ASSERT(sizeof(engine_gui_gui_Widget) == 136 && NELUA_ALIGNOF(engine_gui_gui_Widget) == 8, "Nelua and C disagree on type size or align");
-typedef struct nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 {
-  function_bzzBLj5mYD5sVgkZ r1;
+typedef struct nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 {
+  function_4VVrTWnnnN83DMYKf r1;
   nelua_vector_UIWindow__ptr r2;
   int64_t r3;
-} nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64;
-static NELUA_INLINE nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 nelua_mipairs_2(nelua_vector_UIWindow__ptr a);
+} nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64;
+static NELUA_INLINE nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 nelua_mipairs_2(nelua_vector_UIWindow__ptr a);
 static NELUA_INLINE nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr nelua_mipairs_next_1(nelua_vector_UIWindow__ptr a_3, int64_t k);
 typedef engine_gui_gui_Widget* engine_gui_gui_Widget_ptr;
 typedef struct nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr {
@@ -347,13 +347,13 @@ typedef struct nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr {
   engine_gui_gui_Widget_ptr r3;
 } nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr;
 typedef nelua_vector_Widget_* nelua_vector_Widget__ptr;
-typedef nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr (*function_vHWoBt2aLVwUBAA9)(nelua_vector_Widget__ptr, int64_t);
-typedef struct nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64 {
-  function_vHWoBt2aLVwUBAA9 r1;
+typedef nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr (*function_4tDKP9i1NnGh9yxsw)(nelua_vector_Widget__ptr, int64_t);
+typedef struct nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64 {
+  function_4tDKP9i1NnGh9yxsw r1;
   nelua_vector_Widget__ptr r2;
   int64_t r3;
-} nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64;
-static NELUA_INLINE nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64 nelua_mipairs_3(nelua_vector_Widget__ptr a);
+} nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64;
+static NELUA_INLINE nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64 nelua_mipairs_3(nelua_vector_Widget__ptr a);
 static NELUA_INLINE nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr nelua_mipairs_next_2(nelua_vector_Widget__ptr a_4, int64_t k);
 typedef struct nelua_GCItem nelua_GCItem;
 typedef nelua_GCItem* nelua_GCItem_ptr;
@@ -364,7 +364,7 @@ typedef struct nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr {
 } nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr;
 typedef struct nelua_hashmap_iteratorT nelua_hashmap_iteratorT;
 typedef nelua_hashmap_iteratorT* nelua_hashmap_iteratorT_ptr;
-typedef nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr (*function_4KhKvdTuwWzwnr3Rm)(nelua_hashmap_iteratorT_ptr, void*);
+typedef nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr (*function_2hxXETBTZzpvwLDX7)(nelua_hashmap_iteratorT_ptr, void*);
 typedef struct nelua_hashmap_pointer__GCItem_ nelua_hashmap_pointer__GCItem_;
 typedef nelua_hashmap_pointer__GCItem_* nelua_hashmap_pointer__GCItem__ptr;
 struct nelua_hashmap_iteratorT {
@@ -413,12 +413,12 @@ struct nelua_hashmapnode_pointer__GCItem_ {
   uintptr_t next;
 };
 NELUA_STATIC_ASSERT(sizeof(nelua_hashmapnode_pointer__GCItem_) == 64 && NELUA_ALIGNOF(nelua_hashmapnode_pointer__GCItem_) == 8, "Nelua and C disagree on type size or align");
-typedef struct nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer {
-  function_4KhKvdTuwWzwnr3Rm r1;
+typedef struct nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer {
+  function_2hxXETBTZzpvwLDX7 r1;
   nelua_hashmap_iteratorT r2;
   void* r3;
-} nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer;
-static NELUA_INLINE nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer nelua_mpairs_1(nelua_hashmap_pointer__GCItem__ptr a);
+} nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer;
+static NELUA_INLINE nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer nelua_mpairs_1(nelua_hashmap_pointer__GCItem__ptr a);
 typedef struct nelua_span_uint8_ nelua_span_uint8_;
 struct nelua_span_uint8_ {
   nluint8_arr0_ptr data;
@@ -562,7 +562,7 @@ static nelua_GCItem nelua_hashmap_pointer__GCItem__remove(nelua_hashmap_pointer_
 static uintptr_t nelua_hashmap_pointer__GCItem__bucketcount(nelua_hashmap_pointer__GCItem__ptr self);
 static NELUA_INLINE nelua_hashmapnode_pointer__GCItem__ptr nelua_hashmap_iteratorT__next_node(nelua_hashmap_iteratorT_ptr self, void* key);
 static NELUA_INLINE nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr nelua_hashmap_iteratorT_mnext(nelua_hashmap_iteratorT_ptr self, void* key);
-static NELUA_INLINE nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer nelua_hashmap_pointer__GCItem____mpairs(nelua_hashmap_pointer__GCItem__ptr self);
+static NELUA_INLINE nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer nelua_hashmap_pointer__GCItem____mpairs(nelua_hashmap_pointer__GCItem__ptr self);
 static NELUA_INLINE bool nelua_hasflag(uintptr_t flags, uintptr_t flag);
 static NELUA_INLINE uintptr_t nelua_align_forward(uintptr_t addr, uintptr_t align);
 static NELUA_INLINE bool nelua_GCItem_ismarked(nelua_GCItem_ptr self);
@@ -597,15 +597,15 @@ union nelua_RegsBuf {
   void* firstreg;
 };
 static void nelua_GC_mark(nelua_GC_ptr self);
-typedef void (*function_kkbPi7gmSDCwzNji)(nelua_GC_ptr);
+typedef void (*function_21EHfgUvZqUaXQgZ5)(nelua_GC_ptr);
 static NELUA_NOINLINE void nelua_GC_sweep(nelua_GC_ptr self);
 static void nelua_assert_line_25(bool cond, nlstring msg);
 static void nelua_assert_line_26(bool cond, nlstring msg);
 static NELUA_NOINLINE void nelua_GC_collect(nelua_GC_ptr self);
 static void nelua_GC_registerroots(nelua_GC_ptr self);
-typedef void (*function_4nHsMW7azJqrkDhAE)(void*, void*);
+typedef void (*function_49FPdj1fCcMcsdva2)(void*, void*);
 static bool nelua_GC_step(nelua_GC_ptr self);
-static void nelua_GC_register(nelua_GC_ptr self, void* ptr, uintptr_t size, uintptr_t flags, function_4nHsMW7azJqrkDhAE finalizer, void* userdata);
+static void nelua_GC_register(nelua_GC_ptr self, void* ptr, uintptr_t size, uintptr_t flags, function_49FPdj1fCcMcsdva2 finalizer, void* userdata);
 static void nelua_assert_line_27(bool cond, nlstring msg);
 static void nelua_GC_reregister(nelua_GC_ptr self, void* oldptr, void* newptr, uintptr_t newsize);
 static void nelua_assert_line_28(bool cond, nlstring msg);
@@ -616,7 +616,7 @@ static NELUA_NOINLINE void nelua_GC_init(nelua_GC_ptr self, void* stack);
 static NELUA_NOINLINE void nelua_GC_destroy(nelua_GC_ptr self);
 typedef char** nlcstring_ptr;
 int main(int argc, nlcstring_ptr argv);
-typedef int (*function_4ZbWF5j6MknmRjFM9)(int, nlcstring_ptr);
+typedef int (*function_3MZsryFHzv8tEu4FH)(int, nlcstring_ptr);
 static nelua_GCAllocator nelua_gc_allocator;
 typedef nelua_GCAllocator* nelua_GCAllocator_ptr;
 static NELUA_NOINLINE void* nelua_GCAllocator_alloc_1(nelua_GCAllocator_ptr self, uintptr_t size, nlniltype flags, nlniltype finalizer, nlniltype userdata);
@@ -751,6 +751,9 @@ static void engine_uimanager_uimanager_UIManagerClass_ResetWindowPosition(engine
 static void engine_uimanager_uimanager_UIManagerClass_Update(engine_uimanager_uimanager_UIManagerClass_ptr self);
 static void engine_uimanager_uimanager_UIManagerClass_AddWindow(engine_uimanager_uimanager_UIManagerClass_ptr self, nlstring uMenuBarText, nlstring uWindowName, Vector2 uSize, Vector2 uPosition, Color uBorderColor, Color uFGColor, Color uBGColor, int uMenuTextPadding, int uMenuFontSize, int uMenuBarSize, int uBorderSize, bool uMenuBarEnabled);
 static engine_uimanager_uimanager_UIManagerClass engine_uimanager_uimanager_UIManager;
+static uint16_t main_screenWidth;
+static NELUA_INLINE uint16_t nelua_assert_narrow_nlcint_nluint16(int x);
+static uint16_t main_screenHeight;
 typedef struct engine_render_render_RendererClass engine_render_render_RendererClass;
 typedef engine_render_render_RendererClass* engine_render_render_RendererClass_ptr;
 struct engine_render_render_RendererClass {
@@ -762,23 +765,13 @@ struct engine_render_render_RendererClass {
 NELUA_STATIC_ASSERT(sizeof(engine_render_render_RendererClass) == 12 && NELUA_ALIGNOF(engine_render_render_RendererClass) == 4, "Nelua and C disagree on type size or align");
 static void engine_render_render_RendererClass_BeginRenderIntro(engine_render_render_RendererClass_ptr self);
 static NELUA_INLINE int nelua_assert_imod_nlcint(int a, int b);
-static void engine_render_render_RendererClass_BeginRender(engine_render_render_RendererClass_ptr self);
+static void engine_render_render_RendererClass_SetupEngineUI(engine_render_render_RendererClass_ptr self);
+static void engine_render_render_RendererClass_Render(engine_render_render_RendererClass_ptr self);
+static void engine_render_render_RendererClass_Init(engine_render_render_RendererClass_ptr self);
 static engine_render_render_RendererClass engine_render_render_Renderer;
 static void nelua_require_engine_render_render(nlniltype modname);
-typedef struct engine_engine_gui_engine_gui_EngineGUIClass engine_engine_gui_engine_gui_EngineGUIClass;
-typedef engine_engine_gui_engine_gui_EngineGUIClass* engine_engine_gui_engine_gui_EngineGUIClass_ptr;
-struct engine_engine_gui_engine_gui_EngineGUIClass {
-  uint16_t screenWidth;
-  uint16_t screenHeight;
-};
-NELUA_STATIC_ASSERT(sizeof(engine_engine_gui_engine_gui_EngineGUIClass) == 4 && NELUA_ALIGNOF(engine_engine_gui_engine_gui_EngineGUIClass) == 2, "Nelua and C disagree on type size or align");
-static void engine_engine_gui_engine_gui_EngineGUIClass_Init(engine_engine_gui_engine_gui_EngineGUIClass_ptr self);
-static NELUA_INLINE uint16_t nelua_assert_narrow_nlcint_nluint16(int x);
-static void engine_engine_gui_engine_gui_EngineGUIClass_Startup(engine_engine_gui_engine_gui_EngineGUIClass_ptr self);
-static void engine_engine_gui_engine_gui_EngineGUIClass_UpdateGUI(engine_engine_gui_engine_gui_EngineGUIClass_ptr self);
-static engine_engine_gui_engine_gui_EngineGUIClass engine_engine_gui_engine_gui_EngineGUI;
-static uint16_t main_screenWidth;
-static uint16_t main_screenHeight;
+static uint16_t main_screenWidth_1;
+static uint16_t main_screenHeight_1;
 static int nelua_main(int argc, char** argv);
 /* ------------------------------ DEFINITIONS ------------------------------- */
 void nelua_write_stderr(const char* msg, uintptr_t len, bool flush) {
@@ -864,8 +857,8 @@ nlmulret_nlboolean_nlint64_engine_event_event_Event nelua_ipairs_next(nelua_vect
   }
   return (nlmulret_nlboolean_nlint64_engine_event_event_Event){true, k, (*(engine_event_event_Event*)nelua_assert_deref(nelua_vector_Event____atindex(a_1, nelua_assert_narrow_nlint64_nlusize(k))))};
 }
-nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64 nelua_ipairs_1(nelua_vector_Event__ptr a) {
-  return (nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64){nelua_ipairs_next, a, -1};
+nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64 nelua_ipairs_1(nelua_vector_Event__ptr a) {
+  return (nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64){nelua_ipairs_next, a, -1};
 }
 nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr nelua_mipairs_next(nelua_vector_Event__ptr a_2, int64_t k) {
   k = (k + 1);
@@ -874,8 +867,8 @@ nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr nelua_mipairs_next(nelua
   }
   return (nlmulret_nlboolean_nlint64_engine_event_event_Event_ptr){true, k, (&(*(engine_event_event_Event*)nelua_assert_deref(nelua_vector_Event____atindex(a_2, nelua_assert_narrow_nlint64_nlusize(k)))))};
 }
-nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64 nelua_mipairs_1(nelua_vector_Event__ptr a) {
-  return (nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64){nelua_mipairs_next, a, -1};
+nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64 nelua_mipairs_1(nelua_vector_Event__ptr a) {
+  return (nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64){nelua_mipairs_next, a, -1};
 }
 nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr nelua_mipairs_next_1(nelua_vector_UIWindow__ptr a_3, int64_t k) {
   k = (k + 1);
@@ -884,8 +877,8 @@ nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr nelua_mipairs_next_1(nelu
   }
   return (nlmulret_nlboolean_nlint64_engine_gui_gui_UIWindow_ptr){true, k, (&(*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex(a_3, nelua_assert_narrow_nlint64_nlusize(k)))))};
 }
-nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 nelua_mipairs_2(nelua_vector_UIWindow__ptr a) {
-  return (nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64){nelua_mipairs_next_1, a, -1};
+nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 nelua_mipairs_2(nelua_vector_UIWindow__ptr a) {
+  return (nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64){nelua_mipairs_next_1, a, -1};
 }
 nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr nelua_mipairs_next_2(nelua_vector_Widget__ptr a_4, int64_t k) {
   k = (k + 1);
@@ -894,12 +887,12 @@ nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr nelua_mipairs_next_2(nelua_
   }
   return (nlmulret_nlboolean_nlint64_engine_gui_gui_Widget_ptr){true, k, (&(*(engine_gui_gui_Widget*)nelua_assert_deref(nelua_vector_Widget____atindex(a_4, nelua_assert_narrow_nlint64_nlusize(k)))))};
 }
-nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64 nelua_mipairs_3(nelua_vector_Widget__ptr a) {
-  return (nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64){nelua_mipairs_next_2, a, -1};
+nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64 nelua_mipairs_3(nelua_vector_Widget__ptr a) {
+  return (nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64){nelua_mipairs_next_2, a, -1};
 }
-nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer nelua_mpairs_1(nelua_hashmap_pointer__GCItem__ptr a) {
-  nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer _ret_1 = nelua_hashmap_pointer__GCItem____mpairs(a);
-  return (nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer){_ret_1.r1, _ret_1.r2, _ret_1.r3};
+nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer nelua_mpairs_1(nelua_hashmap_pointer__GCItem__ptr a) {
+  nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer _ret_1 = nelua_hashmap_pointer__GCItem____mpairs(a);
+  return (nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer){_ret_1.r1, _ret_1.r2, _ret_1.r3};
 }
 bool nelua_span_uint8__empty(nelua_span_uint8_ self) {
   return (self.size == 0);
@@ -1605,8 +1598,8 @@ nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr nelua_hashmap_iteratorT_mnext(nelu
   }
   return (nlmulret_nlboolean_nlpointer_nelua_GCItem_ptr){true, node->key, (&node->value)};
 }
-nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer nelua_hashmap_pointer__GCItem____mpairs(nelua_hashmap_pointer__GCItem__ptr self) {
-  return (nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer){nelua_hashmap_iteratorT_mnext, (nelua_hashmap_iteratorT){.container = self, .index = 0xffffffffffffffffULL}, NULL};
+nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer nelua_hashmap_pointer__GCItem____mpairs(nelua_hashmap_pointer__GCItem__ptr self) {
+  return (nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer){nelua_hashmap_iteratorT_mnext, (nelua_hashmap_iteratorT){.container = self, .index = 0xffffffffffffffffULL}, NULL};
 }
 bool nelua_hasflag(uintptr_t flags, uintptr_t flag) {
   return ((flags & flag) != 0);
@@ -1677,8 +1670,8 @@ void nelua_GC_markptr(nelua_GC_ptr self, void* ptr) {
 }
 void nelua_GC_unmarkall(nelua_GC_ptr self) {
   {
-    nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer _asgnret_1 = nelua_mpairs_1((&self->items));
-    function_4KhKvdTuwWzwnr3Rm __fornext = _asgnret_1.r1;
+    nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer _asgnret_1 = nelua_mpairs_1((&self->items));
+    function_2hxXETBTZzpvwLDX7 __fornext = _asgnret_1.r1;
     nelua_hashmap_iteratorT __forstate = _asgnret_1.r2;
     void* __fornextit = _asgnret_1.r3;
     while(true) {
@@ -1698,8 +1691,8 @@ void nelua_GC_unmarkall(nelua_GC_ptr self) {
 }
 void nelua_GC_markroot(nelua_GC_ptr self) {
   {
-    nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer _asgnret_1 = nelua_mpairs_1((&self->items));
-    function_4KhKvdTuwWzwnr3Rm __fornext = _asgnret_1.r1;
+    nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer _asgnret_1 = nelua_mpairs_1((&self->items));
+    function_2hxXETBTZzpvwLDX7 __fornext = _asgnret_1.r1;
     nelua_hashmap_iteratorT __forstate = _asgnret_1.r2;
     void* __fornextit = _asgnret_1.r3;
     while(true) {
@@ -1745,7 +1738,7 @@ void nelua_GC_mark(nelua_GC_ptr self) {
   nelua_GC_unmarkall(self);
   nelua_GC_markroot(self);
   if((self->stackbottom != 0)) {
-    volatile function_kkbPi7gmSDCwzNji markstack = nelua_GC_markstack;
+    volatile function_21EHfgUvZqUaXQgZ5 markstack = nelua_GC_markstack;
     markstack(self);
   }
 }
@@ -1768,8 +1761,8 @@ void nelua_assert_line_26(bool cond, nlstring msg) {
 void nelua_GC_sweep(nelua_GC_ptr self) {
   bool finalize = false;
   {
-    nlmulret_function_4KhKvdTuwWzwnr3Rm_nelua_hashmap_iteratorT_nlpointer _asgnret_1 = nelua_mpairs_1((&self->items));
-    function_4KhKvdTuwWzwnr3Rm __fornext = _asgnret_1.r1;
+    nlmulret_function_2hxXETBTZzpvwLDX7_nelua_hashmap_iteratorT_nlpointer _asgnret_1 = nelua_mpairs_1((&self->items));
+    function_2hxXETBTZzpvwLDX7 __fornext = _asgnret_1.r1;
     nelua_hashmap_iteratorT __forstate = _asgnret_1.r2;
     void* __fornextit = _asgnret_1.r3;
     while(true) {
@@ -1838,9 +1831,9 @@ void nelua_GC_collect(nelua_GC_ptr self) {
   self->collecting = false;
 }
 void nelua_GC_registerroots(nelua_GC_ptr self) {
-  nelua_GC_register((&nelua_gc), (void*)(&engine_mouse_mouse_Mouse), 40U, 131072U, (function_4nHsMW7azJqrkDhAE)NULL, (void*)NULL);
-  nelua_GC_register((&nelua_gc), (void*)(&engine_event_manager_event_manager_EventManager), 24U, 131072U, (function_4nHsMW7azJqrkDhAE)NULL, (void*)NULL);
-  nelua_GC_register((&nelua_gc), (void*)(&engine_uimanager_uimanager_UIManager), 32U, 131072U, (function_4nHsMW7azJqrkDhAE)NULL, (void*)NULL);
+  nelua_GC_register((&nelua_gc), (void*)(&engine_mouse_mouse_Mouse), 40U, 131072U, (function_49FPdj1fCcMcsdva2)NULL, (void*)NULL);
+  nelua_GC_register((&nelua_gc), (void*)(&engine_event_manager_event_manager_EventManager), 24U, 131072U, (function_49FPdj1fCcMcsdva2)NULL, (void*)NULL);
+  nelua_GC_register((&nelua_gc), (void*)(&engine_uimanager_uimanager_UIManager), 32U, 131072U, (function_49FPdj1fCcMcsdva2)NULL, (void*)NULL);
 }
 bool nelua_GC_step(nelua_GC_ptr self) {
   if(((!self->collecting) && ((self->membytes * 100) >= (self->lastmembytes * self->pause)))) {
@@ -1857,7 +1850,7 @@ void nelua_assert_line_27(bool cond, nlstring msg) {
     nelua_abort();
   }
 }
-void nelua_GC_register(nelua_GC_ptr self, void* ptr, uintptr_t size, uintptr_t flags, function_4nHsMW7azJqrkDhAE finalizer, void* userdata) {
+void nelua_GC_register(nelua_GC_ptr self, void* ptr, uintptr_t size, uintptr_t flags, function_49FPdj1fCcMcsdva2 finalizer, void* userdata) {
   if(NELUA_UNLIKELY((!(ptr != NULL)))) {
     return;
   }
@@ -1960,7 +1953,7 @@ void nelua_GC_destroy(nelua_GC_ptr self) {
 }
 int main(int argc, nlcstring_ptr argv) {
   nelua_GC_init((&nelua_gc), (void*)(&argc));
-  volatile function_4ZbWF5j6MknmRjFM9 inner_main = nelua_main;
+  volatile function_3MZsryFHzv8tEu4FH inner_main = nelua_main;
   int ret = inner_main(argc, argv);
   nelua_GC_destroy((&nelua_gc));
   return ret;
@@ -2484,8 +2477,8 @@ int64_t nelua_assert_narrow_nlusize_nlint64(uintptr_t x) {
 }
 void engine_event_manager_event_manager_EventManagerRecord_RevealEvents(engine_event_manager_event_manager_EventManagerRecord_ptr self) {
   {
-    nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_ipairs_1((&self->Events));
-    function_4upzrgk1oTiT6fHbP __fornext = _asgnret_1.r1;
+    nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_ipairs_1((&self->Events));
+    function_QJerhEgmcBZoG85t __fornext = _asgnret_1.r1;
     nelua_vector_Event__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2508,8 +2501,8 @@ void engine_event_manager_event_manager_EventManagerRecord_AddEvent(engine_event
 }
 void engine_event_manager_event_manager_EventManagerRecord_FireEvent(engine_event_manager_event_manager_EventManagerRecord_ptr self, nlstring uEventName) {
   {
-    nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_mipairs_1((&self->Events));
-    function_4ZwuBM5aPgLeW3DFn __fornext = _asgnret_1.r1;
+    nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_mipairs_1((&self->Events));
+    function_4csjbs3efaCZE5UAR __fornext = _asgnret_1.r1;
     nelua_vector_Event__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2531,8 +2524,8 @@ void engine_event_manager_event_manager_EventManagerRecord_FireEvent(engine_even
 }
 void engine_event_manager_event_manager_EventManagerRecord_Cleanup(engine_event_manager_event_manager_EventManagerRecord_ptr self, nlstring uEventName) {
   {
-    nlmulret_function_4ZwuBM5aPgLeW3DFn_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_mipairs_1((&self->Events));
-    function_4ZwuBM5aPgLeW3DFn __fornext = _asgnret_1.r1;
+    nlmulret_function_4csjbs3efaCZE5UAR_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_mipairs_1((&self->Events));
+    function_4csjbs3efaCZE5UAR __fornext = _asgnret_1.r1;
     nelua_vector_Event__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2554,8 +2547,8 @@ void engine_event_manager_event_manager_EventManagerRecord_Cleanup(engine_event_
 }
 engine_event_event_Event engine_event_manager_event_manager_EventManagerRecord_GetEvent(engine_event_manager_event_manager_EventManagerRecord_ptr self, nlstring uEventName) {
   {
-    nlmulret_function_4upzrgk1oTiT6fHbP_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_ipairs_1((&self->Events));
-    function_4upzrgk1oTiT6fHbP __fornext = _asgnret_1.r1;
+    nlmulret_function_QJerhEgmcBZoG85t_nelua_vector_Event__ptr_nlint64 _asgnret_1 = nelua_ipairs_1((&self->Events));
+    function_QJerhEgmcBZoG85t __fornext = _asgnret_1.r1;
     nelua_vector_Event__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2670,8 +2663,8 @@ uintptr_t nelua_assert_narrow_nlisize_nlusize(intptr_t x) {
 }
 void engine_uimanager_uimanager_UIManagerClass_AddWidget(engine_uimanager_uimanager_UIManagerClass_ptr self, nlstring uWindowName, nlstring uWidgetName, nlstring uWidgetType, nlstring uWidgetText, int uWidgetFontSize, Vector2 uWidgetPosition, Vector2 uWidgetSize, bool uWidgetAlwaysDrawn) {
   {
-    nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
-    function_bzzBLj5mYD5sVgkZ __fornext = _asgnret_1.r1;
+    nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
+    function_4VVrTWnnnN83DMYKf __fornext = _asgnret_1.r1;
     nelua_vector_UIWindow__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2690,8 +2683,8 @@ void engine_uimanager_uimanager_UIManagerClass_AddWidget(engine_uimanager_uimana
           engine_gui_gui_Widget_Init((&(*(engine_gui_gui_Widget*)nelua_assert_deref(nelua_vector_Widget____atindex((&window->Widgets), nelua_assert_narrow_nlisize_nlusize((nelua_vector_Widget____len((&window->Widgets)) - 1)))))));
           engine_event_manager_event_manager_EventManagerRecord_AddEvent((&engine_event_manager_event_manager_EventManager), uWidgetName);
           {
-            nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64 _asgnret_3 = nelua_mipairs_3((&window->Widgets));
-            function_vHWoBt2aLVwUBAA9 __fornext_1 = _asgnret_3.r1;
+            nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64 _asgnret_3 = nelua_mipairs_3((&window->Widgets));
+            function_4tDKP9i1NnGh9yxsw __fornext_1 = _asgnret_3.r1;
             nelua_vector_Widget__ptr __forstate_1 = _asgnret_3.r2;
             int64_t __fornextit_1 = _asgnret_3.r3;
             while(true) {
@@ -2717,8 +2710,8 @@ void engine_uimanager_uimanager_UIManagerClass_AddWidget(engine_uimanager_uimana
 }
 void engine_uimanager_uimanager_UIManagerClass_ToggleWindow(engine_uimanager_uimanager_UIManagerClass_ptr self, nlstring uWindowName) {
   {
-    nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
-    function_bzzBLj5mYD5sVgkZ __fornext = _asgnret_1.r1;
+    nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
+    function_4VVrTWnnnN83DMYKf __fornext = _asgnret_1.r1;
     nelua_vector_UIWindow__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2740,8 +2733,8 @@ void engine_uimanager_uimanager_UIManagerClass_ToggleWindow(engine_uimanager_uim
 }
 void engine_uimanager_uimanager_UIManagerClass_ResetWindowPosition(engine_uimanager_uimanager_UIManagerClass_ptr self, nlstring uWindowName) {
   {
-    nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
-    function_bzzBLj5mYD5sVgkZ __fornext = _asgnret_1.r1;
+    nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
+    function_4VVrTWnnnN83DMYKf __fornext = _asgnret_1.r1;
     nelua_vector_UIWindow__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2764,8 +2757,8 @@ void engine_uimanager_uimanager_UIManagerClass_ResetWindowPosition(engine_uimana
 void engine_uimanager_uimanager_UIManagerClass_Update(engine_uimanager_uimanager_UIManagerClass_ptr self) {
   self->insideElement = false;
   {
-    nlmulret_function_bzzBLj5mYD5sVgkZ_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
-    function_bzzBLj5mYD5sVgkZ __fornext = _asgnret_1.r1;
+    nlmulret_function_4VVrTWnnnN83DMYKf_nelua_vector_UIWindow__ptr_nlint64 _asgnret_1 = nelua_mipairs_2((&self->Windows));
+    function_4VVrTWnnnN83DMYKf __fornext = _asgnret_1.r1;
     nelua_vector_UIWindow__ptr __forstate = _asgnret_1.r2;
     int64_t __fornextit = _asgnret_1.r3;
     while(true) {
@@ -2789,8 +2782,8 @@ void engine_uimanager_uimanager_UIManagerClass_Update(engine_uimanager_uimanager
           engine_event_manager_event_manager_EventManagerRecord_Cleanup((&engine_event_manager_event_manager_EventManager), nelua_nlstring___concat_1(window->windowName, ((nlstring){(uint8_t*)"ResetButton", 11})));
         }
         {
-          nlmulret_function_vHWoBt2aLVwUBAA9_nelua_vector_Widget__ptr_nlint64 _asgnret_3 = nelua_mipairs_3((&window->Widgets));
-          function_vHWoBt2aLVwUBAA9 __fornext_2 = _asgnret_3.r1;
+          nlmulret_function_4tDKP9i1NnGh9yxsw_nelua_vector_Widget__ptr_nlint64 _asgnret_3 = nelua_mipairs_3((&window->Widgets));
+          function_4tDKP9i1NnGh9yxsw __fornext_2 = _asgnret_3.r1;
           nelua_vector_Widget__ptr __forstate_2 = _asgnret_3.r2;
           int64_t __fornextit_2 = _asgnret_3.r3;
           while(true) {
@@ -2830,6 +2823,12 @@ void engine_uimanager_uimanager_UIManagerClass_AddWindow(engine_uimanager_uimana
   engine_uimanager_uimanager_UIManagerClass_AddWidget(self, uWindowName, nelua_nlstring___concat_1(uWindowName, ((nlstring){(uint8_t*)"MinimiseButton", 14})), ((nlstring){(uint8_t*)"Button", 6}), ((nlstring){(uint8_t*)"", 0}), 6, (Vector2){(((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).size.x - ((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * 6)) - 20), (float)((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * 2)}, (Vector2){(float)((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * (*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize), (float)((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * (*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize)}, true);
   engine_uimanager_uimanager_UIManagerClass_AddWidget(self, uWindowName, nelua_nlstring___concat_1(uWindowName, ((nlstring){(uint8_t*)"ResetButton", 11})), ((nlstring){(uint8_t*)"Button", 6}), ((nlstring){(uint8_t*)"", 0}), 6, (Vector2){((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).size.x - ((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * 6)), (float)((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * 2)}, (Vector2){(float)((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * (*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize), (float)((*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize * (*(engine_gui_gui_UIWindow*)nelua_assert_deref(nelua_vector_UIWindow____atindex((&self->Windows), nelua_assert_narrow_nlisize_nlusize((nelua_vector_UIWindow____len((&self->Windows)) - 1))))).borderSize)}, true);
 }
+uint16_t nelua_assert_narrow_nlcint_nluint16(int x) {
+  if(NELUA_UNLIKELY(x < 0 || x > 0xffff)) {
+    nelua_panic_cstring("narrow casting from cint to uint16 failed");
+  }
+  return (uint16_t)x;
+}
 int nelua_assert_imod_nlcint(int a, int b) {
   if(NELUA_UNLIKELY(b == -1)) return 0;
   if(NELUA_UNLIKELY(b == 0)) nelua_panic_cstring("division by zero");
@@ -2860,44 +2859,37 @@ void engine_render_render_RendererClass_BeginRenderIntro(engine_render_render_Re
     }
   }
 }
-void engine_render_render_RendererClass_BeginRender(engine_render_render_RendererClass_ptr self) {
+void engine_render_render_RendererClass_SetupEngineUI(engine_render_render_RendererClass_ptr self) {
+  engine_uimanager_uimanager_UIManagerClass_AddWindow((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"Hierarchy", 9}), ((nlstring){(uint8_t*)"HierarchyWindow", 15}), (Vector2){(float)(main_screenWidth / (double)4), (float)(main_screenHeight - (main_screenHeight / (double)4))}, (Vector2){0.0f, 0.0f}, (Color){15U, 15U, 15U, 255U}, (Color){40U, 40U, 40U, 255U}, (Color){200U, 200U, 200U, 255U}, 8, 12, 32, 4, true);
+  engine_uimanager_uimanager_UIManagerClass_AddWindow((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"Inspector", 9}), ((nlstring){(uint8_t*)"InspectorWindow", 15}), (Vector2){(float)(main_screenWidth / (double)4), (float)(main_screenHeight / (double)4)}, (Vector2){(float)(main_screenWidth / (double)4), 0.0f}, (Color){15U, 15U, 15U, 255U}, (Color){40U, 40U, 40U, 255U}, (Color){200U, 200U, 200U, 255U}, 8, 12, 32, 4, true);
+  engine_uimanager_uimanager_UIManagerClass_AddWidget((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"InspectorWindow", 15}), ((nlstring){(uint8_t*)"PlayButton", 10}), ((nlstring){(uint8_t*)"Button", 6}), ((nlstring){(uint8_t*)"Play", 4}), 12, (Vector2){16.0f, 48.0f}, (Vector2){40.0f, 24.0f}, false);
+  engine_uimanager_uimanager_UIManagerClass_AddWidget((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"InspectorWindow", 15}), ((nlstring){(uint8_t*)"StopButton", 10}), ((nlstring){(uint8_t*)"Button", 6}), ((nlstring){(uint8_t*)"Stop", 4}), 12, (Vector2){72.0f, 48.0f}, (Vector2){40.0f, 24.0f}, false);
+}
+void engine_render_render_RendererClass_Render(engine_render_render_RendererClass_ptr self) {
   ClearBackground((Color){12U, 15U, 16U, 255U});
   engine_uimanager_uimanager_UIManagerClass_Update((&engine_uimanager_uimanager_UIManager));
+}
+void engine_render_render_RendererClass_Init(engine_render_render_RendererClass_ptr self) {
+  engine_render_render_RendererClass_BeginRenderIntro(self);
+  main_screenWidth = nelua_assert_narrow_nlcint_nluint16(GetScreenWidth());
+  main_screenHeight = nelua_assert_narrow_nlcint_nluint16(GetScreenHeight());
+  engine_render_render_RendererClass_SetupEngineUI(self);
 }
 void nelua_require_engine_render_render(nlniltype modname) {
   engine_render_render_Renderer.isRenderingIntro = true;
   engine_render_render_Renderer.isRenderingFrames = true;
 }
-uint16_t nelua_assert_narrow_nlcint_nluint16(int x) {
-  if(NELUA_UNLIKELY(x < 0 || x > 0xffff)) {
-    nelua_panic_cstring("narrow casting from cint to uint16 failed");
-  }
-  return (uint16_t)x;
-}
-void engine_engine_gui_engine_gui_EngineGUIClass_Init(engine_engine_gui_engine_gui_EngineGUIClass_ptr self) {
-  self->screenWidth = nelua_assert_narrow_nlcint_nluint16(GetScreenWidth());
-  self->screenHeight = nelua_assert_narrow_nlcint_nluint16(GetScreenHeight());
-}
-void engine_engine_gui_engine_gui_EngineGUIClass_Startup(engine_engine_gui_engine_gui_EngineGUIClass_ptr self) {
-  engine_engine_gui_engine_gui_EngineGUIClass_Init(self);
-  engine_uimanager_uimanager_UIManagerClass_AddWindow((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"Hierarchy", 9}), ((nlstring){(uint8_t*)"HierarchyWindow", 15}), (Vector2){(float)(self->screenWidth / (double)4), (float)(self->screenHeight - (self->screenHeight / (double)4))}, (Vector2){0.0f, 0.0f}, (Color){15U, 15U, 15U, 255U}, (Color){40U, 40U, 40U, 255U}, (Color){200U, 200U, 200U, 255U}, 8, 12, 32, 4, true);
-  engine_uimanager_uimanager_UIManagerClass_AddWindow((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"Inspector", 9}), ((nlstring){(uint8_t*)"InspectorWindow", 15}), (Vector2){(float)(self->screenWidth / (double)4), (float)(self->screenHeight / (double)4)}, (Vector2){(float)(self->screenWidth / (double)4), 0.0f}, (Color){15U, 15U, 15U, 255U}, (Color){40U, 40U, 40U, 255U}, (Color){200U, 200U, 200U, 255U}, 8, 12, 32, 4, true);
-  engine_uimanager_uimanager_UIManagerClass_AddWidget((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"InspectorWindow", 15}), ((nlstring){(uint8_t*)"PlayButton", 10}), ((nlstring){(uint8_t*)"Button", 6}), ((nlstring){(uint8_t*)"Play", 4}), 12, (Vector2){16.0f, 48.0f}, (Vector2){40.0f, 24.0f}, false);
-  engine_uimanager_uimanager_UIManagerClass_AddWidget((&engine_uimanager_uimanager_UIManager), ((nlstring){(uint8_t*)"InspectorWindow", 15}), ((nlstring){(uint8_t*)"StopButton", 10}), ((nlstring){(uint8_t*)"Button", 6}), ((nlstring){(uint8_t*)"Stop", 4}), 12, (Vector2){72.0f, 48.0f}, (Vector2){40.0f, 24.0f}, false);
-}
-void engine_engine_gui_engine_gui_EngineGUIClass_UpdateGUI(engine_engine_gui_engine_gui_EngineGUIClass_ptr self) {
-}
 int nelua_main(int argc, char** argv) {
-  nelua_require_engine_render_render(NELUA_NIL);
   main_screenWidth = nelua_assert_narrow_nlcint_nluint16(GetScreenWidth());
   main_screenHeight = nelua_assert_narrow_nlcint_nluint16(GetScreenHeight());
-  InitWindow((int)main_screenWidth, (int)main_screenHeight, (char*)"Game Engine");
+  nelua_require_engine_render_render(NELUA_NIL);
+  main_screenWidth_1 = nelua_assert_narrow_nlcint_nluint16(GetScreenWidth());
+  main_screenHeight_1 = nelua_assert_narrow_nlcint_nluint16(GetScreenHeight());
+  InitWindow((int)main_screenWidth_1, (int)main_screenHeight_1, (char*)"Game Engine");
   SetTargetFPS(60);
   engine_information_handler_information_handler_InformationHandlerClass_Log((&engine_information_handler_information_handler_InformationHandler), nelua_nlstring___concat_1(((nlstring){(uint8_t*)"Project started on: ", 20}), engine_fileystem_filesystem_fs_readfile(((nlstring){(uint8_t*)"age.md", 6})).r1));
-  engine_engine_gui_engine_gui_EngineGUIClass_Startup((&engine_engine_gui_engine_gui_EngineGUI));
+  engine_render_render_RendererClass_Init((&engine_render_render_Renderer));
   engine_event_manager_event_manager_EventManagerRecord_RevealEvents((&engine_event_manager_event_manager_EventManager));
-  engine_render_render_Renderer.isRenderingIntro = true;
-  engine_render_render_RendererClass_BeginRenderIntro((&engine_render_render_Renderer));
   while((!WindowShouldClose())) {
     if(engine_information_handler_information_handler_InformationHandler.isHaulted) {
       goto main_ErrorRaised;
@@ -2905,13 +2897,12 @@ int nelua_main(int argc, char** argv) {
     if(engine_mouse_mouse_Mouse.RMBPressed) {
       engine_information_handler_information_handler_InformationHandlerClass_RaiseError((&engine_information_handler_information_handler_InformationHandler), 1, ((nlstring){(uint8_t*)"RMB was pressed, requesting an exit.", 36}));
     }
-    engine_engine_gui_engine_gui_EngineGUIClass_UpdateGUI((&engine_engine_gui_engine_gui_EngineGUI));
     engine_mouse_mouse_MouseClass_Update((&engine_mouse_mouse_Mouse));
     if(engine_mouse_mouse_Mouse.RMBPressed) {
       engine_information_handler_information_handler_InformationHandlerClass_RaiseError((&engine_information_handler_information_handler_InformationHandler), 1, ((nlstring){(uint8_t*)"RMB was pressed, requesting an exit.", 36}));
     }
     BeginDrawing();
-    engine_render_render_RendererClass_BeginRender((&engine_render_render_Renderer));
+    engine_render_render_RendererClass_Render((&engine_render_render_Renderer));
     EndDrawing();
   }
 main_ErrorRaised:;
