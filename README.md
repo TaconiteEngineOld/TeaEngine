@@ -82,5 +82,5 @@ This project will probably be good and usable after a couple of months, please b
 
 # Community
 
-[Discord](https://discord.gg/M7Qkgby2rm)
-[Matrix space](https://matrix.to/#/#teaengine:matrix.org)
+| [Discord](https://discord.gg/M7Qkgby2rm) |
+[Matrix space](https://matrix.to/#/#teaengine:matrix.org) |
