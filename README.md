@@ -37,6 +37,9 @@ Please download the source code from the [Github releases tab](https://github.co
 
 # FAQ
 
+### Is the engine ready yet?
+Short answer, unfortunately not. I appologise for any inconvenience. The engine will take a while longer before it is finished.
+
 ### What platforms are going to be supported at the moment?
 Windows and Linux are the platforms that are going to be developed for at the moment.
 
