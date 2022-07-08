@@ -36,6 +36,7 @@ global Widget = @record {
 	-- Engine dealt Booleans
 	isHighlighted: boolean,
 	alwaysDrawn: boolean,
+	autoSize: boolean,
 	isShown: boolean,
 	isDown: boolean,
 }

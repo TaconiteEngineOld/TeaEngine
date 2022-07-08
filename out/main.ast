@@ -258,6 +258,42 @@ Block {
   Call {
     {
       Number {
+        "1920"
+      },
+      Number {
+        "0"
+      }
+    },
+    Id {
+      "SetWindowPosition"
+    }
+  },
+  If {
+    {
+      UnaryOp {
+        "not",
+        Call {
+          {
+          },
+          Id {
+            "IsWindowFullscreen"
+          }
+        }
+      },
+      Block {
+        Call {
+          {
+          },
+          Id {
+            "ToggleFullscreen"
+          }
+        }
+      }
+    }
+  },
+  Call {
+    {
+      Number {
         "60"
       }
     },
