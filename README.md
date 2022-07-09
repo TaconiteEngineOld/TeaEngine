@@ -37,6 +37,9 @@ Please download the source code from the [Github releases tab](https://github.co
 
 # FAQ
 
+### Is the engine ready yet?
+Short answer, unfortunately not. I appologise for any inconvenience. The engine will take a while longer before it is finished.
+
 ### What platforms are going to be supported at the moment?
 Windows and Linux are the platforms that are going to be developed for at the moment.
 
@@ -79,4 +82,5 @@ This project will probably be good and usable after a couple of months, please b
 
 # Community
 
-[Discord](https://discord.gg/M7Qkgby2rm)
+| [Discord](https://discord.gg/M7Qkgby2rm) |
+[Matrix space](https://matrix.to/#/#teaengine:matrix.org) |
