@@ -3,11 +3,12 @@ local UIManagerClass = @record {
 	insideElement: boolean,
 }
 
-function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string, uWidgetType: string, uWidgetText: string, uWidgetFontSize: cint, uWidgetPosition: Vector2, uWidgetSize: Vector2, uWidgetAlwaysDrawn: boolean)
+function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string, uWidgetType: string, uWidgetText: string, uWidgetFontSize: cint, uWidgetPosition: Vector2, uWidgetSize: Vector2, uWidgetAlwaysDrawn: boolean, uAutoSize: boolean)
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do
 		if window.windowName == uWindowName then
 			window.Widgets:push((Widget){uWidgetName, uWidgetType, uWidgetText, uWidgetFontSize, uWidgetPosition, uWidgetSize, window.borderSize, true, window.borderColor, window.bgColor, window.fgColor, (Vector2){window.pos.x, window.pos.y}})
 			window.Widgets[#window.Widgets - 1].alwaysDrawn = uWidgetAlwaysDrawn
+			window.Widgets[#window.Widgets - 1].autoSize = uAutoSize
 			window.Widgets[#window.Widgets - 1]:Init()
 			EventManager:AddEvent(uWidgetName)
 

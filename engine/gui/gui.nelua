@@ -130,6 +130,11 @@ function Widget:Draw()
 end
 
 function Widget:Update()
+	if self.autoSize then
+		self.size.x = MeasureText(self.widgetText, self.fontSize) + self.borderSize * 4
+		self.size.y = self.fontSize * 2
+	end
+
 	if self.widgetType == "Button" or self.widgetType == "Selectable" then
 		if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tlW, self.brW) then
 			self.isHighlighted = true
