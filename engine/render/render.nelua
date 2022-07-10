@@ -3,6 +3,10 @@ local RendererClass = @record {
 	isRenderingFrames: boolean,
 	frameCount: cint,
 	realFrameCount: cint,
+
+	borderColor: Color,
+	bgColor: Color,
+	fgColor: Color,
 }
 
 function RendererClass:DrawBoxWithOutlined(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
@@ -38,24 +42,51 @@ function RendererClass:BeginRenderIntro()
 
 		self.realFrameCount = self.realFrameCount + 1
 
-		if self.realFrameCount % 4 == 0 then
+		if self.realFrameCount % 2 == 0 then
 			self.frameCount = self.frameCount + 1
 		end
 	end
 end
 
 function RendererClass:SetupEngineUI()
+	self.borderColor = (Color){15, 15, 15, 255}
+	self.bgColor = (Color){40, 40, 40, 255}
+	self.fgColor = (Color){200, 200, 200, 255}
+
 	--[[ Create windows (Hierarchy, Inspector) ]]--
-	UIManager:AddWindow("Hierarchy", "HierarchyWindow", (Vector2){screenWidth / 4, screenHeight - screenHeight / 4}, (Vector2){0, 0}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4 ,true)
-	UIManager:AddWindow("Inspector", "InspectorWindow", (Vector2){screenWidth / 4, screenHeight / 4}, (Vector2){screenWidth / 4, 0}, (Color){15, 15, 15, 255}, (Color){40, 40, 40, 255}, (Color){200, 200, 200, 255}, 8, 12, 32, 4, true)
+	UIManager:AddWindow("Hierarchy", "HierarchyWindow", (Vector2){screenWidth / 4, screenHeight - screenHeight / 4}, (Vector2){0, 0}, self.borderColor, self.bgColor, self.fgColor, 8, 12, 32, 4 ,true)
+	UIManager:AddWindow("Inspector", "InspectorWindow", (Vector2){screenWidth / 4, screenHeight / 4}, (Vector2){screenWidth / 4, 0}, self.borderColor, self.bgColor, self.fgColor, 8, 12, 32, 4, true)
 
 	--[[ Create widgets for the inspector ]]--
-	UIManager:AddWidget("InspectorWindow", "PlayButton", "Button", "Play", 12, (Vector2){16, 48}, (Vector2){40,24}, false, true)
-	UIManager:AddWidget("InspectorWindow", "StopButton", "Button", "Stop", 12, (Vector2){72, 48}, (Vector2){40,24}, false, true)
+	UIManager:AddWidget("InspectorWindow", "PlayButton")
+		:SetWidgetType("Button")
+		:SetText("Play")
+		:SetColors(self.borderColor, self.fgColor, self.bgColor)
+		:SetFontSize(12)
+		:SetBorderSize(2)
+		:SetPosition((Vector2){20, 42})
+		:SetAutoSize(true)
+		:Init()
 
-	--[[ Create widgets for the hierarchy ]]--
-	UIManager:AddWidget("HierarchyWindow", "PlayButton", "Button", "Add", 12, (Vector2){16, 36}, (Vector2){40, 24}, false, true)
-	UIManager:AddWidget("HierarchyWindow", "SelectButton", "Selectable", "A selectable", 12, (Vector2){16, 64}, (Vector2){40, 24}, false, true)
+	UIManager:AddWidget("InspectorWindow", "StopButton")
+		:SetWidgetType("Button")
+		:SetText("Stop")
+		:SetColors(self.borderColor, self.fgColor, self.bgColor)
+		:SetFontSize(12)
+		:SetBorderSize(2)
+		:SetPosition((Vector2){20, 68})
+		:SetAutoSize(true)
+		:Init()
+
+	UIManager:AddWidget("HierarchyWindow", "PlayButton")
+		:SetWidgetType("Button")
+		:SetText("Add")
+		:SetColors(self.borderColor, self.fgColor, self.bgColor)
+		:SetFontSize(12)
+		:SetBorderSize(2)
+		:SetPosition((Vector2){16, 36})
+		:SetAutoSize(true)
+		:Init()
 end
 
 function RendererClass:RenderEngineUI()

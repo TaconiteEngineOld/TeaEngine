@@ -33,10 +33,6 @@ InitWindow(screenWidth, screenHeight, "Game Engine") -- Create the window
 -- [[ DEV OPTIONS ]] --
 SetWindowPosition(1920, 0)
 
-if not IsWindowFullscreen() then
-	ToggleFullscreen()
-end
-
 SetTargetFPS(60) -- Set the FPS limit
 
 InformationHandler:Log("Project started on: "..fs.readfile('age.md'))

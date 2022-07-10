@@ -3,22 +3,18 @@ local UIManagerClass = @record {
 	insideElement: boolean,
 }
 
-function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string, uWidgetType: string, uWidgetText: string, uWidgetFontSize: cint, uWidgetPosition: Vector2, uWidgetSize: Vector2, uWidgetAlwaysDrawn: boolean, uAutoSize: boolean)
-	for i: usize, window: *UIWindow in mipairs(self.Windows) do
+function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string): *Widget
+	for i: usize, window: *UIWindow in mipairs(self.Windows) do 
 		if window.windowName == uWindowName then
-			window.Widgets:push((Widget){uWidgetName, uWidgetType, uWidgetText, uWidgetFontSize, uWidgetPosition, uWidgetSize, window.borderSize, true, window.borderColor, window.bgColor, window.fgColor, (Vector2){window.pos.x, window.pos.y}})
-			window.Widgets[#window.Widgets - 1].alwaysDrawn = uWidgetAlwaysDrawn
-			window.Widgets[#window.Widgets - 1].autoSize = uAutoSize
-			window.Widgets[#window.Widgets - 1]:Init()
+			window.Widgets:push((Widget){uWidgetName})
 			EventManager:AddEvent(uWidgetName)
-
-			for i: usize, widget: *Widget in mipairs(window.Widgets) do
-				if widget.widgetName == window.windowName.."ResetButton" or widget.widgetName == window.windowName.."MinimiseButton" then
-					widget.isShown = true
-				end
-			end
+			window.Widgets[#window.Widgets - 1].spaceOccupied = true
+			
+			return &window.Widgets[#window.Widgets - 1]
 		end
 	end
+
+	return &(Widget){}
 end
 
 function UIManagerClass:ToggleWindow(uWindowName: string)
@@ -82,8 +78,33 @@ end
 function UIManagerClass:AddWindow(uMenuBarText: string, uWindowName: string, uSize: Vector2, uPosition: Vector2, uBorderColor: Color, uFGColor: Color, uBGColor: Color, uMenuTextPadding: cint, uMenuFontSize: cint, uMenuBarSize: cint, uBorderSize: cint, uMenuBarEnabled: boolean)
 	self.Windows:push((UIWindow){uMenuBarText, uWindowName, uSize, uPosition, uBorderColor, uFGColor, uBGColor, 0, uMenuTextPadding, uMenuFontSize, uMenuBarSize, uBorderSize, uMenuBarEnabled})
 	self.Windows[#self.Windows - 1]:Init()
-	self:AddWidget(uWindowName, uWindowName.."MinimiseButton", "Button", "", 6, (Vector2){self.Windows[#self.Windows - 1].size.x - self.Windows[#self.Windows - 1].borderSize * 6 - 20, self.Windows[#self.Windows - 1].borderSize * 2}, (Vector2){self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize, self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize}, true)
-	self:AddWidget(uWindowName, uWindowName.."ResetButton", "Button", "", 6, (Vector2){self.Windows[#self.Windows - 1].size.x - self.Windows[#self.Windows - 1].borderSize * 6, self.Windows[#self.Windows - 1].borderSize * 2}, (Vector2){self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize, self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize}, true)
+	--self:AddWidget(uWindowName, uWindowName.."MinimiseButton", "Button", "", 6, (Vector2){self.Windows[#self.Windows - 1].size.x - self.Windows[#self.Windows - 1].borderSize * 6 - 20, self.Windows[#self.Windows - 1].borderSize * 2}, (Vector2){self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize, self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize}, true)
+
+	local winRef = self.Windows[#self.Windows - 1]
+	local widgetSize = (Vector2){winRef.borderSize^2, winRef.borderSize^2}
+	
+	local resetPos = (Vector2){winRef.size.x - winRef.borderSize * 6, winRef.borderSize * 2}
+	local minPos = (Vector2){winRef.size.x - winRef.borderSize * 6 - 20, winRef.borderSize * 2}
+
+	self:AddWidget(uWindowName, uWindowName.."ResetButton")
+		:SetWidgetType("Button")
+		:SetColors(winRef.borderColor, winRef.fgColor, winRef.bgColor)
+		:SetFontSize(6)
+		:SetBorderSize(2)
+		:SetPosition(resetPos)
+		:SetSize(widgetSize)
+		:SetAlwaysDrawn(true)
+		:Init()
+
+	self:AddWidget(uWindowName, uWindowName.."MinimiseButton")
+		:SetWidgetType("Button")
+		:SetColors(winRef.borderColor, winRef.fgColor, winRef.bgColor)
+		:SetFontSize(6)
+		:SetBorderSize(2)
+		:SetPosition(minPos)
+		:SetSize(widgetSize)
+		:SetAlwaysDrawn(true)
+		:Init()
 end
 
 function UIManagerClass:GetWindow(uWindowName: string): UIWindow

@@ -1,20 +1,20 @@
 global Widget = @record {
 
 	-- Strings
-	widgetName: string,
-	widgetType: string,
+	widgetName: string, --
+	widgetType: string, --
 
-	widgetText: string,
+	widgetText: string, --
 
 	-- Cints	
-	fontSize: cint,
+	fontSize: cint, --
 
 	-- Vector2s
-	position: Vector2,
-	size: Vector2,
+	position: Vector2, --
+	size: Vector2, --
 
 	-- Engine dealt Cints
-	borderSize: cint,
+	borderSize: cint, --
 
 	-- Booleans
 	spaceOccupied: boolean,
@@ -84,14 +84,17 @@ global UIWindow = @record {
 }
 
 function Widget:Init()
+	if self.autoSize then
+		self.size.x = MeasureText(self.widgetText, self.fontSize) + self.borderSize * 4
+		self.size.y = self.fontSize * 2
+	end
+
 	self.tl.x = self.position.x
 	self.tl.y = self.position.y
 
 	self.br.x = self.size.x
 	self.br.y = self.size.y
 end
-
--- 32, 80
 
 function Widget:UpdateVW()
 	self.tlW.x = self.tl.x + self.windowPosition.x
@@ -101,7 +104,52 @@ function Widget:UpdateVW()
 	self.brW.y = self.br.y + self.tl.y + self.windowPosition.y
 end
 
--- 96 112
+function Widget:SetColors(uBorderColor: Color, uFGColor: Color, uBGColor: Color)
+	self.borderColor = uBorderColor
+	self.fgColor = uFGColor
+	self.bgColor = uBGColor
+	return self
+end
+
+function Widget:SetText(uWidgetText: string): *Widget
+	self.widgetText = uWidgetText
+	return self
+end
+
+function Widget:SetWidgetType(uWidgetType: string): *Widget
+	self.widgetType = uWidgetType
+	return self
+end
+
+function Widget:SetFontSize(uWidgetFontSize: cint): *Widget
+	self.fontSize = uWidgetFontSize
+	return self
+end
+
+function Widget:SetPosition(uWidgetPosition: Vector2): *Widget
+	self.position = uWidgetPosition
+	return self
+end
+
+function Widget:SetSize(uWidgetSize: Vector2): *Widget
+	self.size = uWidgetSize
+	return self
+end
+
+function Widget:SetBorderSize(uWidgetBorderSize: cint): *Widget
+	self.borderSize = uWidgetBorderSize
+	return self
+end
+
+function Widget:SetAlwaysDrawn(uWidgetAlwaysDrawn: boolean): *Widget
+	self.alwaysDrawn = uWidgetAlwaysDrawn
+	return self
+end
+
+function Widget:SetAutoSize(uWidgetAutoSize: boolean): *Widget
+	self.autoSize = uWidgetAutoSize
+	return self
+end
 
 function Widget:Draw()
 	if self.widgetType == "Button" then
@@ -130,11 +178,6 @@ function Widget:Draw()
 end
 
 function Widget:Update()
-	if self.autoSize then
-		self.size.x = MeasureText(self.widgetText, self.fontSize) + self.borderSize * 4
-		self.size.y = self.fontSize * 2
-	end
-
 	if self.widgetType == "Button" or self.widgetType == "Selectable" then
 		if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tlW, self.brW) then
 			self.isHighlighted = true

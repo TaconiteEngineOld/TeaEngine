@@ -268,29 +268,6 @@ Block {
       "SetWindowPosition"
     }
   },
-  If {
-    {
-      UnaryOp {
-        "not",
-        Call {
-          {
-          },
-          Id {
-            "IsWindowFullscreen"
-          }
-        }
-      },
-      Block {
-        Call {
-          {
-          },
-          Id {
-            "ToggleFullscreen"
-          }
-        }
-      }
-    }
-  },
   Call {
     {
       Number {
