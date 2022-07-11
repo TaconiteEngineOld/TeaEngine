@@ -1,0 +1,11 @@
+-- Define the event type, this is an event that can be created with the Event manager and fired to send signals across scripts with data.
+global PassableEvent = @record {
+        -- Strings
+    name: string,
+    
+    -- Booleans
+    fired: boolean,
+
+    -- Strings
+    data: string,
+}

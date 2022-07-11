@@ -1,3 +1,4 @@
+-- Define the event type, this is simply an event that can be created with the Event manager and fired to send signals across scripts.
 global Event = @record {
 	-- Strings
 	name: string,

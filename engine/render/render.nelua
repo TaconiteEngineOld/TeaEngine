@@ -1,4 +1,5 @@
-local RendererClass = @record {
+-- Create a Renderer record
+local RendererR = @record {
 	isRenderingIntro: boolean,
 	isRenderingFrames: boolean,
 	frameCount: cint,
@@ -9,12 +10,14 @@ local RendererClass = @record {
 	fgColor: Color,
 }
 
-function RendererClass:DrawBoxWithOutlined(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
+-- Call DrawBoxWithOutline to draw a box with an outline
+function RendererR:DrawBoxWithOutlined(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
 	DrawRectangle(pos.x, pos.y, size.x, size.y, borderColor)
 	DrawRectangle(pos.x + pad, pos.y + pad, size.x - pad * 2, size.y - pad * 2, bgColor)
 end
 
-function RendererClass:BeginRenderIntro()
+-- Call BeginRenderIntro to draw the intro of the game, usually ran at startup
+function RendererR:BeginRenderIntro()
 	while self.isRenderingIntro do
 		if self.frameCount >= 48 then
 			self.isRenderingFrames = false
@@ -48,7 +51,8 @@ function RendererClass:BeginRenderIntro()
 	end
 end
 
-function RendererClass:SetupEngineUI()
+-- Call SetupEngineUI to create all of the elements for the Engine UI
+function RendererR:SetupEngineUI()
 	self.borderColor = (Color){15, 15, 15, 255}
 	self.bgColor = (Color){40, 40, 40, 255}
 	self.fgColor = (Color){200, 200, 200, 255}
@@ -87,26 +91,36 @@ function RendererClass:SetupEngineUI()
 		:SetPosition((Vector2){16, 36})
 		:SetAutoSize(true)
 		:Init()
+
+	UIManager:AddWidget("HierarchyWindow", "Selectable1")
+		:SetWidgetType("Selectable")
+		:SetText("Selectable 1 is here")
+		:SetColors(self.borderColor, self.fgColor, self.bgColor)
+		:SetFontSize(12)
+		:SetBorderSize(2)
+		:SetPosition((Vector2){16, 96})
+		:SetAutoSize(true)
+		:Init()
+
+	UIManager:AddWidget("HierarchyWindow", "Selectable2")
+		:SetWidgetType("Selectable")
+		:SetText("Selectable 2 is here")
+		:SetColors(self.borderColor, self.fgColor, self.bgColor)
+		:SetFontSize(12)
+		:SetBorderSize(2)
+		:SetPosition((Vector2){16, 116})
+		:SetAutoSize(true)
+		:Init()
 end
 
-function RendererClass:RenderEngineUI()
-	local EngineGUIClass = @record {
-		screenWidth: uint16,
-		screenHeight: uint16
-	}
-	
-	function EngineGUIClass:Init()
-		screenWidth = GetScreenWidth()
-		screenHeight = GetScreenHeight()
-	end
-end
-
-function RendererClass:Render()
+-- Call Render to draw the frames to the screen
+function RendererR:Render()
 	ClearBackground((Color){12, 15, 16, 255})
 	UIManager:Update()
 end
 
-function RendererClass:Init()
+-- Call Init to set all everything
+function RendererR:Init()
 	--[[ Show the intro screen ]]--
 	self:BeginRenderIntro()
 	
@@ -114,12 +128,14 @@ function RendererClass:Init()
 	screenWidth = GetScreenWidth()
 	screenHeight = GetScreenHeight()
 
+	--[[ Add events ]]--
+	EventManager:AddPassableEvent("SetSelectableCall")
+
 	-- [[ Setup the engine UI ]] --
 	self:SetupEngineUI()
 end
 
--- [[ Create a global renderer ]] --
-global Renderer: RendererClass
+global Renderer: RendererR
 
 Renderer.isRenderingIntro = true
 Renderer.isRenderingFrames = true

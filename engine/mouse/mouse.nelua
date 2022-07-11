@@ -1,6 +1,5 @@
--- Requires raylib
-
-local MouseClass = @record {
+-- Create a Mouse record that contains `x`, `y`, `LMBDown`, `MMBDown`, `RMBDown`, `LMBPressed`, `MMBPressed`, `RMBPressed`, `LMBReleased`, `scrollWheelMove`, `insideUIElement`, `isGrabbing`, `windowGrabbed`
+global MouseR = @record {
 	x: cint,
 	y: cint,
 
@@ -22,7 +21,8 @@ local MouseClass = @record {
 	windowGrabbed: string,
 }
 
-function MouseClass:Update()
+-- Update all of the variables for the mouse record.
+function MouseR:Update()
 	self.x = GetMouseX()
 	self.y = GetMouseY()
 
@@ -38,4 +38,4 @@ function MouseClass:Update()
 	self.scrollWheelMove = GetMouseWheelMove()
 end
 
-global Mouse: MouseClass
+global Mouse: MouseR

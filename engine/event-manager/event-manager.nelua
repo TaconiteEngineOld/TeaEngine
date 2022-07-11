@@ -1,18 +1,42 @@
-local EventManagerRecord = @record {
-	Events: vector(Event)
+-- Define the Event Manager type
+global EventManagerR = @record {
+	Events: vector(Event),
+	PassableEvents: vector(PassableEvent),
 }
 
-function EventManagerRecord:RevealEvents()
+-- Call RevealEvents to list all of the events in the vector
+function EventManagerR:RevealEvents()
 	for i: usize, event in ipairs(self.Events) do
-		InformationHandler:Log(event.name)
+		InformationHandler:Log(event.name.." - Default")
+	end
+
+	for i: usize, event in ipairs(self.PassableEvents) do
+		InformationHandler:Log(event.name.." - Passable")
 	end
 end
 
-function EventManagerRecord:AddEvent(uEventName: string)
+-- Call AddEvent to push a new event onto the events vector
+function EventManagerR:AddEvent(uEventName: string)
 	self.Events:push((Event){uEventName, false})
 end
 
-function EventManagerRecord:FireEvent(uEventName: string)
+-- Call AddPassableEvent to push a new passable event onto the passable events vector
+function EventManagerR:AddPassableEvent(uPassableEventName: string)
+	self.PassableEvents:push((PassableEvent){uPassableEventName})
+end
+
+-- Call FirePassableEvent to set the `fired` variable to true and to pass data onto the event type
+function EventManagerR:FirePassableEvent(uPassableEventName: string, uPassableEventData: string)
+	for i: usize, passableEvent: *PassableEvent in mipairs(self.PassableEvents) do
+		if passableEvent.name == uPassableEventName then
+			passableEvent.fired = true
+			passableEvent.data = uPassableEventData
+		end
+	end
+end
+
+-- Call FireEvent to set the `fired` variable to true on the event type
+function EventManagerR:FireEvent(uEventName: string)
 	for i: usize, event: *Event in mipairs(self.Events) do
 		if event.name == uEventName then
 			event.fired = true
@@ -20,7 +44,8 @@ function EventManagerRecord:FireEvent(uEventName: string)
 	end
 end
 
-function EventManagerRecord:Cleanup(uEventName: string)
+-- Call Cleanup to set the `fired` variable to false on the event type so that it does not toggle an if statement or wherever else it may be used.
+function EventManagerR:Cleanup(uEventName: string)
 	for i: usize, event: *Event in mipairs(self.Events) do
 		if event.name == uEventName then
 			event.fired = false
@@ -28,9 +53,21 @@ function EventManagerRecord:Cleanup(uEventName: string)
 	end
 end
 
-function EventManagerRecord:GetEvent(uEventName: string)
+-- Call Cleanup to set the `fired` variable and the `data` variable to nothing on the passable event type so that it does not toggle an if statement or wherever else it may be used.
+function EventManagerR:CleanupPassable(uPassableEventName: string)
+	for i: usize, passableEvent: *PassableEvent in mipairs(self.PassableEvents) do
+		if passableEvent.name == uPassableEventName then
+			passableEvent.fired = false
+			passableEvent.data = ""
+		end
+	end
+end
+
+-- Call GetEvent to get the variables of an event and also run Cleanup on the event to prevent looping
+function EventManagerR:GetEvent(uEventName: string): Event
 	for i: usize, event in ipairs(self.Events) do
 		if event.name == uEventName then
+			self:Cleanup(event.name)
 			return event
 		end
 	end
@@ -38,4 +75,18 @@ function EventManagerRecord:GetEvent(uEventName: string)
 	return (Event){}
 end
 
-global EventManager: EventManagerRecord
+-- Call GetPassableEvent to get the variables of an event and also run Cleanup on the event to prevent looping
+function EventManagerR:GetPassableEvent(uPassableEventName: string): PassableEvent
+	for i: usize, passableEvent in ipairs(self.PassableEvents) do
+		if passableEvent.name == uPassableEventName then
+			self:CleanupPassable(passableEvent.name)
+			return passableEvent
+		end
+	end
+
+	InformationHandler:RaiseError(0, "Passable event not found")
+
+	return (PassableEvent){}
+end
+
+global EventManager: EventManagerR

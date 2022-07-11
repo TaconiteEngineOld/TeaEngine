@@ -1,6 +1,8 @@
-local UtilityClass = @record {}
+-- Create the Utility record
+global UtilityR = @record {}
 
-function UtilityClass:IsInsideQuad(point: Vector2, tl: Vector2, br: Vector2): boolean
+-- Call IsInsideQuad with a point to check if it is inside two vector2s
+function UtilityR:IsInsideQuad(point: Vector2, tl: Vector2, br: Vector2): boolean
 	if point.x >= tl.x and point.x <= br.x and point.y >= tl.y and point.y <= br.y then
 		return true
 	end
@@ -8,9 +10,10 @@ function UtilityClass:IsInsideQuad(point: Vector2, tl: Vector2, br: Vector2): bo
 	return false
 end
 
-function UtilityClass:DrawBoxWithOutline(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
+-- Alternative version of DrawBoxWithOutline (Likely temporary)
+function UtilityR:DrawBoxWithOutline(pos: Vector2, size: Vector2, pad: cint, bgColor: Color, borderColor: Color)
 	DrawRectangle(pos.x, pos.y, size.x, size.y, borderColor)
 	DrawRectangle(pos.x + pad, pos.y + pad, size.x - pad * 2, size.y - pad * 2, bgColor)
 end
 
-global Utility: UtilityClass
+global Utility: UtilityR

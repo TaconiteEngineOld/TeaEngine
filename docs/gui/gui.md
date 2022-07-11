@@ -18,6 +18,10 @@
 * [UIWindow:Update](#uiwindowupdate)
 * [UIWindow:Draw](#uiwindowdraw)
 
+## gui
+
+Define the Widget record so it can be used later on.
+
 ### Widget
 
 ```lua
@@ -65,7 +69,7 @@ global Widget = @record {
 }
 ```
 
-
+Define the Widget record so it can be used later on.
 
 ### UIWindow
 
@@ -113,7 +117,7 @@ global UIWindow = @record {
 }
 ```
 
-
+Define the UIWindow record so it can be used later on.
 
 ### Widget:Init
 
@@ -121,7 +125,7 @@ global UIWindow = @record {
 function Widget:Init()
 ```
 
-
+Call Init on the Widget to set the size if `autoSize` is enabled and also set the variables for the top left and bottom right vectors for detection of the cursor, this must be called on all widgets that are created.
 
 ### Widget:UpdateVW
 
@@ -129,7 +133,7 @@ function Widget:Init()
 function Widget:UpdateVW()
 ```
 
-
+Call UpdateVW to create the variables for top let and bottom right not relative to the window but to the screen.
 
 ### Widget:SetColors
 
@@ -137,7 +141,9 @@ function Widget:UpdateVW()
 function Widget:SetColors(uBorderColor: Color, uFGColor: Color, uBGColor: Color)
 ```
 
+Call SetColors on a widget to set the colors for the border, the background and the foregorund. (Chaining possible)*
 
+Note: from here on out `*` means it is required
 
 ### Widget:SetText
 
@@ -145,7 +151,7 @@ function Widget:SetColors(uBorderColor: Color, uFGColor: Color, uBGColor: Color)
 function Widget:SetText(uWidgetText: string): *Widget
 ```
 
-
+Call SetText on a widget to set the text of the widget. (Chaining possible)
 
 ### Widget:SetWidgetType
 
@@ -153,7 +159,7 @@ function Widget:SetText(uWidgetText: string): *Widget
 function Widget:SetWidgetType(uWidgetType: string): *Widget
 ```
 
-
+Call SetWidgetType to set the `widgeType` variable on the widget. (Chaining possible)*
 
 ### Widget:SetFontSize
 
@@ -161,7 +167,7 @@ function Widget:SetWidgetType(uWidgetType: string): *Widget
 function Widget:SetFontSize(uWidgetFontSize: cint): *Widget
 ```
 
-
+Call SetFontSize to set the `fontSize` variable on the widget. (Chaining possible)
 
 ### Widget:SetPosition
 
@@ -169,7 +175,7 @@ function Widget:SetFontSize(uWidgetFontSize: cint): *Widget
 function Widget:SetPosition(uWidgetPosition: Vector2): *Widget
 ```
 
-
+Call SetPosition on a widget to set the position variable. (Chaining possible)*
 
 ### Widget:SetSize
 
@@ -177,7 +183,7 @@ function Widget:SetPosition(uWidgetPosition: Vector2): *Widget
 function Widget:SetSize(uWidgetSize: Vector2): *Widget
 ```
 
-
+Call SetSize on a widget to set the size variable. (Chaining possible)*
 
 ### Widget:SetBorderSize
 
@@ -185,7 +191,7 @@ function Widget:SetSize(uWidgetSize: Vector2): *Widget
 function Widget:SetBorderSize(uWidgetBorderSize: cint): *Widget
 ```
 
-
+Call SetBorderSize to define the border size variable on a widget. (Chaining possible)
 
 ### Widget:SetAlwaysDrawn
 
@@ -193,7 +199,7 @@ function Widget:SetBorderSize(uWidgetBorderSize: cint): *Widget
 function Widget:SetAlwaysDrawn(uWidgetAlwaysDrawn: boolean): *Widget
 ```
 
-
+Call SetAlwaysDrawn to define whether the widget should be drawn always or not. (Chaining Possible)
 
 ### Widget:SetAutoSize
 
@@ -201,7 +207,7 @@ function Widget:SetAlwaysDrawn(uWidgetAlwaysDrawn: boolean): *Widget
 function Widget:SetAutoSize(uWidgetAutoSize: boolean): *Widget
 ```
 
-
+Call SetAutoSize to define whether the widget should set it's own size or not. (Chaining possible)
 
 ### Widget:Draw
 
@@ -209,7 +215,7 @@ function Widget:SetAutoSize(uWidgetAutoSize: boolean): *Widget
 function Widget:Draw()
 ```
 
-
+Call Draw on a widget to make the widget draw depending on it's type
 
 ### Widget:Update
 
@@ -217,7 +223,7 @@ function Widget:Draw()
 function Widget:Update()
 ```
 
-
+Call Update on a widget to make the widget run it's logic. For example, a Button would decide whether it is highlighted and whether it is clicked or not.
 
 ### UIWindow:Init
 
@@ -225,7 +231,7 @@ function Widget:Update()
 function UIWindow:Init()
 ```
 
-
+Call Init on a window to set it's initial variables
 
 ### UIWindow:Update
 
@@ -233,7 +239,7 @@ function UIWindow:Init()
 function UIWindow:Update()
 ```
 
-
+Call Update on a window to run the windows logic. For example, the window detecting whether it should be moved or not by the cursor
 
 ### UIWindow:Draw
 
@@ -241,6 +247,6 @@ function UIWindow:Update()
 function UIWindow:Draw()
 ```
 
-
+Call Draw on a window to make the window draw all of the components of the window.
 
 ---

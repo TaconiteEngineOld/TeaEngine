@@ -1,3 +1,4 @@
+-- Define the Widget record so it can be used later on.
 global Widget = @record {
 
 	-- Strings
@@ -41,6 +42,7 @@ global Widget = @record {
 	isDown: boolean,
 }
 
+-- Define the UIWindow record so it can be used later on.
 global UIWindow = @record {
 
 	-- Strings
@@ -83,6 +85,7 @@ global UIWindow = @record {
 	grabDebounce: cint,
 }
 
+-- Call Init on the Widget to set the size if `autoSize` is enabled and also set the variables for the top left and bottom right vectors for detection of the cursor, this must be called on all widgets that are created.
 function Widget:Init()
 	if self.autoSize then
 		self.size.x = MeasureText(self.widgetText, self.fontSize) + self.borderSize * 4
@@ -96,6 +99,7 @@ function Widget:Init()
 	self.br.y = self.size.y
 end
 
+-- Call UpdateVW to create the variables for top let and bottom right not relative to the window but to the screen.
 function Widget:UpdateVW()
 	self.tlW.x = self.tl.x + self.windowPosition.x
 	self.tlW.y = self.tl.y + self.windowPosition.y
@@ -104,6 +108,11 @@ function Widget:UpdateVW()
 	self.brW.y = self.br.y + self.tl.y + self.windowPosition.y
 end
 
+--[[ 
+Call SetColors on a widget to set the colors for the border, the background and the foregorund. (Chaining possible)*
+
+Note: from here on out `*` means it is required
+]]
 function Widget:SetColors(uBorderColor: Color, uFGColor: Color, uBGColor: Color)
 	self.borderColor = uBorderColor
 	self.fgColor = uFGColor
@@ -111,46 +120,55 @@ function Widget:SetColors(uBorderColor: Color, uFGColor: Color, uBGColor: Color)
 	return self
 end
 
+-- Call SetText on a widget to set the text of the widget. (Chaining possible)
 function Widget:SetText(uWidgetText: string): *Widget
 	self.widgetText = uWidgetText
 	return self
 end
 
+-- Call SetWidgetType to set the `widgeType` variable on the widget. (Chaining possible)*
 function Widget:SetWidgetType(uWidgetType: string): *Widget
 	self.widgetType = uWidgetType
 	return self
 end
 
+-- Call SetFontSize to set the `fontSize` variable on the widget. (Chaining possible)
 function Widget:SetFontSize(uWidgetFontSize: cint): *Widget
 	self.fontSize = uWidgetFontSize
 	return self
 end
 
+-- Call SetPosition on a widget to set the position variable. (Chaining possible)*
 function Widget:SetPosition(uWidgetPosition: Vector2): *Widget
 	self.position = uWidgetPosition
 	return self
 end
 
+-- Call SetSize on a widget to set the size variable. (Chaining possible)*
 function Widget:SetSize(uWidgetSize: Vector2): *Widget
 	self.size = uWidgetSize
 	return self
 end
 
+-- Call SetBorderSize to define the border size variable on a widget. (Chaining possible)
 function Widget:SetBorderSize(uWidgetBorderSize: cint): *Widget
 	self.borderSize = uWidgetBorderSize
 	return self
 end
 
+-- Call SetAlwaysDrawn to define whether the widget should be drawn always or not. (Chaining Possible)
 function Widget:SetAlwaysDrawn(uWidgetAlwaysDrawn: boolean): *Widget
 	self.alwaysDrawn = uWidgetAlwaysDrawn
 	return self
 end
 
+-- Call SetAutoSize to define whether the widget should set it's own size or not. (Chaining possible)
 function Widget:SetAutoSize(uWidgetAutoSize: boolean): *Widget
 	self.autoSize = uWidgetAutoSize
 	return self
 end
 
+-- Call Draw on a widget to make the widget draw depending on it's type
 function Widget:Draw()
 	if self.widgetType == "Button" then
 		if self.isShown or self.alwaysDrawn then
@@ -167,7 +185,7 @@ function Widget:Draw()
 	elseif self.widgetType == "Selectable" then
 		if self.isShown or self.alwaysDrawn then
 			if self.isDown then
-				Utility:DrawBoxWithOutline((Vector2){self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y}, (Vector2){self.size.x, self.size.y}, self.borderSize, self.bgColor, (Color){self.borderColor.r + 10, self.borderColor.g + 10, self.borderColor.b + 10, self.borderColor.a})
+				Utility:DrawBoxWithOutline((Vector2){self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y}, (Vector2){self.size.x, self.size.y}, self.borderSize, self.bgColor, (Color){self.borderColor.r + 30, self.borderColor.g + 30, self.borderColor.b + 30, self.borderColor.a})
 			else
 				Utility:DrawBoxWithOutline((Vector2){self.position.x + self.windowPosition.x, self.position.y + self.windowPosition.y}, (Vector2){self.size.x, self.size.y}, self.borderSize, self.bgColor, self.borderColor)
 			end
@@ -177,6 +195,7 @@ function Widget:Draw()
 	end
 end
 
+-- Call Update on a widget to make the widget run it's logic. For example, a Button would decide whether it is highlighted and whether it is clicked or not.
 function Widget:Update()
 	if self.widgetType == "Button" or self.widgetType == "Selectable" then
 		if Utility:IsInsideQuad((Vector2){Mouse.x, Mouse.y}, self.tlW, self.brW) then
@@ -204,10 +223,8 @@ function Widget:Update()
 				EventManager:FireEvent(self.widgetName)
 			end
 
-			if self.isHighlighted and Mouse.LMBDown then
-				self.isDown = true		
-			else
-				self.isDown = false
+			if self.isHighlighted and Mouse.LMBPressed then
+				EventManager:FirePassableEvent("SetSelectableCall", self.widgetName)
 			end
 		else
 			InformationHandler:Warn("Unaware of the widget type")
@@ -217,10 +234,12 @@ function Widget:Update()
 	self:Draw()
 end
 
+-- Call Init on a window to set it's initial variables
 function UIWindow:Init()
 	self.originalPosition = self.pos
 end
 
+-- Call Update on a window to run the windows logic. For example, the window detecting whether it should be moved or not by the cursor
 function UIWindow:Update()
 	if EventManager:GetEvent(self.windowName.."ResetDebounce").fired then
 		self.grabDebounce = 0
@@ -243,6 +262,7 @@ function UIWindow:Update()
 	end
 end
 
+-- Call Draw on a window to make the window draw all of the components of the window.
 function UIWindow:Draw()
 	if self.isShown then
 		if self.borderSize > 0 then

@@ -1,7 +1,11 @@
-global Object = @record{
-	Transform: Transform,
+-- Create the Object 3D record
+global Object3DR = @record{
+		Transform: Transform,
 }
 
-function Object:ResetPosition()
+-- Reset the position of the object
+function Object3DR:ResetPosition()
 	self.Transform.position = (Vector3){0, 0, 0}
 end
+
+global Object2D: Object3DR

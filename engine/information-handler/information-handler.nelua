@@ -1,10 +1,19 @@
-local InformationHandlerClass = @record {
+global InformationHandlerR = @record {
 	errorIndex: cint,
 	isHaulted: boolean
 }
 
-function InformationHandlerClass:RaiseError(severity: cint, reason: string)
+--[[ Call RaiseError to show that there was an error in the code with severity going from 0 to 3
+	
+	0: Just report the error in red.
+	1: Quit the program and report the error in red saying a clean exit.
+	2: Quit the program and report the error in red saying something went pretty wrong.
+	3: Quit the program and report the error in red saying the program needs to quit or something could go wrong.
+]]
+function InformationHandlerR:RaiseError(severity: cint, reason: string)
 	switch severity do
+	case 0 then
+		print("\n\x1b[31mERROR", reason)
 	case 1 then
 		print("\n\x1b[31mERROR", "Simple clean exit, something went wrong. The reason is as follows: ", reason)
 		self.isHaulted = true
@@ -18,16 +27,20 @@ function InformationHandlerClass:RaiseError(severity: cint, reason: string)
 		print("\n\x1b[31mERROR", "That's not an understood severity code!")
 		self.isHaulted = true
 	end
-
-	print("\n\x1b[37mDefault output:")
+	
+	if self.isHaulted then
+		print("\n\x1b[37mDefault output:")
+	end
 end
 
-function InformationHandlerClass:Log(reason: string)
+-- Call Log to show a piece of information in green.
+function InformationHandlerR:Log(reason: string)
 	print("\n\x1b[32mLOG", reason, "\n\x1b[37m")
 end
 
-function InformationHandlerClass:Warn(reason: string)
+-- Call Warn to show a piece of information in orange.
+function InformationHandlerR:Warn(reason: string)
 	print("\n\x1b[93mWARN", reason, "\n\x1b[37m")
 end
 
-global InformationHandler: InformationHandlerClass
+global InformationHandler: InformationHandlerR

@@ -1,3 +1,4 @@
+-- Create a Transform record
 global Transform = @record{
 	position: Vector3,
 	size: Vector3,

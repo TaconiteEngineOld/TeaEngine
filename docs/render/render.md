@@ -1,12 +1,16 @@
 ### Summary
 * [Renderer](#renderer)
 
+## render
+
+Create a Renderer record
+
 ### Renderer
 
 ```lua
-global Renderer: RendererClass
+global Renderer: RendererR
 ```
 
-[[ Create a global renderer ]]
+
 
 ---

@@ -1,10 +1,10 @@
-global UIManagerClass = @record {
+global UIManagerR = @record {
 	Windows: vector(UIWindow),
 	insideElement: boolean,
 }
 
 -- Call AddWidget to push a widget onto the widgets vector for a window, this will return a pointer to the widget you made to allow chaining.
-function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string): *Widget
+function UIManagerR:AddWidget(uWindowName: string, uWidgetName: string): *Widget
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do 
 		if window.windowName == uWindowName then
 			window.Widgets:push((Widget){uWidgetName})
@@ -19,7 +19,7 @@ function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string): *Wi
 end
 
 -- Call ToggleWindow to make a window toggle between visible and non visible.
-function UIManagerClass:ToggleWindow(uWindowName: string)
+function UIManagerR:ToggleWindow(uWindowName: string)
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do
 		if window.windowName == uWindowName then
 			window.isShown = not window.isShown
@@ -28,7 +28,7 @@ function UIManagerClass:ToggleWindow(uWindowName: string)
 end
 
 -- Call ResetWindowPosition to set the window to it's original position.
-function UIManagerClass:ResetWindowPosition(uWindowName: string)
+function UIManagerR:ResetWindowPosition(uWindowName: string)
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do
 		if window.windowName == uWindowName then
 			window.pos = window.originalPosition
@@ -36,8 +36,23 @@ function UIManagerClass:ResetWindowPosition(uWindowName: string)
 	end
 end
 
+-- Call SetSelectable to disable all other selectables in the widgets for all windows and set a specific selectable to true
+function UIManagerR:SetSelectable(uWidgetName: string)
+	for i: usize, window: *UIWindow in mipairs(self.Windows) do
+		for i: usize, widget: *Widget in mipairs(window.Widgets) do
+			if widget.widgetType == "Selectable" then
+				if widget.widgetName == uWidgetName then
+					widget.isDown = true
+				else
+					widget.isDown = false
+				end
+			end
+		end
+	end
+end
+
 -- Call Update on UIManager to update all windows and their widgets.
-function UIManagerClass:Update()
+function UIManagerR:Update()
 	self.insideElement = false
 
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do
@@ -52,6 +67,11 @@ function UIManagerClass:Update()
 		if EventManager:GetEvent(window.windowName.."ResetButton").fired then
 			self:ResetWindowPosition(window.windowName)
 			EventManager:Cleanup(window.windowName.."ResetButton")
+		end
+
+		local eventData: PassableEvent = EventManager:GetPassableEvent("SetSelectableCall")
+		if eventData.fired then
+			self:SetSelectable(eventData.data)
 		end
 
 		for i: usize, widget: *Widget in mipairs(window.Widgets) do
@@ -76,12 +96,12 @@ function UIManagerClass:Update()
 end
 
 -- Call ClearWindows to delete all windows from the vector of windows.
-function UIManagerClass:ClearWindows()
+function UIManagerR:ClearWindows()
 	self.Windows:clear()
 end
 
 -- Call AddWindow to push a new window to the vector.
-function UIManagerClass:AddWindow(uMenuBarText: string, uWindowName: string, uSize: Vector2, uPosition: Vector2, uBorderColor: Color, uFGColor: Color, uBGColor: Color, uMenuTextPadding: cint, uMenuFontSize: cint, uMenuBarSize: cint, uBorderSize: cint, uMenuBarEnabled: boolean)
+function UIManagerR:AddWindow(uMenuBarText: string, uWindowName: string, uSize: Vector2, uPosition: Vector2, uBorderColor: Color, uFGColor: Color, uBGColor: Color, uMenuTextPadding: cint, uMenuFontSize: cint, uMenuBarSize: cint, uBorderSize: cint, uMenuBarEnabled: boolean)
 	self.Windows:push((UIWindow){uMenuBarText, uWindowName, uSize, uPosition, uBorderColor, uFGColor, uBGColor, 0, uMenuTextPadding, uMenuFontSize, uMenuBarSize, uBorderSize, uMenuBarEnabled})
 	self.Windows[#self.Windows - 1]:Init()
 	--self:AddWidget(uWindowName, uWindowName.."MinimiseButton", "Button", "", 6, (Vector2){self.Windows[#self.Windows - 1].size.x - self.Windows[#self.Windows - 1].borderSize * 6 - 20, self.Windows[#self.Windows - 1].borderSize * 2}, (Vector2){self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize, self.Windows[#self.Windows - 1].borderSize * self.Windows[#self.Windows - 1].borderSize}, true)
@@ -114,7 +134,7 @@ function UIManagerClass:AddWindow(uMenuBarText: string, uWindowName: string, uSi
 end
 
 -- Call GetWindow to get the variables of a window from the windows vector.
-function UIManagerClass:GetWindow(uWindowName: string): UIWindow
+function UIManagerR:GetWindow(uWindowName: string): UIWindow
 	for i: usize, window in ipairs(self.Windows) do
 		return window
 	end
@@ -122,4 +142,4 @@ function UIManagerClass:GetWindow(uWindowName: string): UIWindow
 	return (UIWindow){} 
 end
 
-global UIManager: UIManagerClass
+global UIManager: UIManagerR
