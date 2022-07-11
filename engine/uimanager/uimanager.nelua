@@ -1,8 +1,9 @@
-local UIManagerClass = @record {
+global UIManagerClass = @record {
 	Windows: vector(UIWindow),
 	insideElement: boolean,
 }
 
+-- Call AddWidget to push a widget onto the widgets vector for a window, this will return a pointer to the widget you made to allow chaining.
 function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string): *Widget
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do 
 		if window.windowName == uWindowName then
@@ -17,6 +18,7 @@ function UIManagerClass:AddWidget(uWindowName: string, uWidgetName: string): *Wi
 	return &(Widget){}
 end
 
+-- Call ToggleWindow to make a window toggle between visible and non visible.
 function UIManagerClass:ToggleWindow(uWindowName: string)
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do
 		if window.windowName == uWindowName then
@@ -25,6 +27,7 @@ function UIManagerClass:ToggleWindow(uWindowName: string)
 	end
 end
 
+-- Call ResetWindowPosition to set the window to it's original position.
 function UIManagerClass:ResetWindowPosition(uWindowName: string)
 	for i: usize, window: *UIWindow in mipairs(self.Windows) do
 		if window.windowName == uWindowName then
@@ -33,6 +36,7 @@ function UIManagerClass:ResetWindowPosition(uWindowName: string)
 	end
 end
 
+-- Call Update on UIManager to update all windows and their widgets.
 function UIManagerClass:Update()
 	self.insideElement = false
 
@@ -71,10 +75,12 @@ function UIManagerClass:Update()
 	end
 end
 
+-- Call ClearWindows to delete all windows from the vector of windows.
 function UIManagerClass:ClearWindows()
 	self.Windows:clear()
 end
 
+-- Call AddWindow to push a new window to the vector.
 function UIManagerClass:AddWindow(uMenuBarText: string, uWindowName: string, uSize: Vector2, uPosition: Vector2, uBorderColor: Color, uFGColor: Color, uBGColor: Color, uMenuTextPadding: cint, uMenuFontSize: cint, uMenuBarSize: cint, uBorderSize: cint, uMenuBarEnabled: boolean)
 	self.Windows:push((UIWindow){uMenuBarText, uWindowName, uSize, uPosition, uBorderColor, uFGColor, uBGColor, 0, uMenuTextPadding, uMenuFontSize, uMenuBarSize, uBorderSize, uMenuBarEnabled})
 	self.Windows[#self.Windows - 1]:Init()
@@ -107,6 +113,7 @@ function UIManagerClass:AddWindow(uMenuBarText: string, uWindowName: string, uSi
 		:Init()
 end
 
+-- Call GetWindow to get the variables of a window from the windows vector.
 function UIManagerClass:GetWindow(uWindowName: string): UIWindow
 	for i: usize, window in ipairs(self.Windows) do
 		return window
