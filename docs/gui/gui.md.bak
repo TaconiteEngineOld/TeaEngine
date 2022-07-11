@@ -1,0 +1,171 @@
+### Summary
+* [WIDGET_AMOUNT](#widget_amount)
+* [Widget](#widget)
+* [UIWindow](#uiwindow)
+* [Widget:Init](#widgetinit)
+* [Widget:UpdateVW](#widgetupdatevw)
+* [Widget:Draw](#widgetdraw)
+* [Widget:Update](#widgetupdate)
+* [UIWindow:Init](#uiwindowinit)
+* [UIWindow:Update](#uiwindowupdate)
+* [UIWindow:Draw](#uiwindowdraw)
+
+### WIDGET_AMOUNT
+
+```lua
+global WIDGET_AMOUNT
+```
+
+
+
+### Widget
+
+```lua
+global Widget = @record {
+
+	-- Strings
+	widgetName: string,
+	widgetType: string,
+
+	widgetText: string,
+
+	-- Cints	
+	fontSize: cint,
+
+	-- Vector2s
+	position: Vector2,
+	size: Vector2,
+
+	-- Engine dealt Cints
+	borderSize: cint,
+
+	-- Booleans
+	spaceOccupied: boolean,
+
+	-- Engine dealt Colours
+	borderColor: Color,
+	bgColor: Color,
+	fgColor: Color,
+
+	-- Engine dealt Vector2s
+	tl: Vector2,
+	br: Vector2,
+
+	tlW: Vector2,
+	brW: Vector2,
+
+	windowPosition: Vector2,
+
+	-- Engine dealt Booleans
+	isHighlighted: boolean,
+	isDown: boolean,
+}
+```
+
+
+
+### UIWindow
+
+```lua
+global UIWindow = @record {
+
+	-- Strings
+	menuBarText: string,
+	windowName: string,
+
+	-- Vector2s
+	size: Vector2,
+	pos: Vector2,
+
+	-- Colors
+	borderColor: Color,
+	bgColor: Color,
+	fgColor: Color,
+
+	-- Cints
+	nextWidgetSpotAvailable: cint,
+	menuTextPadding: cint,
+	menuFontSize: cint,
+	menuBarSize: cint,
+	borderSize: cint,
+	
+	-- Booleans
+	menuBarEnabled: boolean,
+	
+	-- Uninitialised Booleans
+	spaceOccupied: boolean,
+	isShown: boolean,
+	moving: boolean,
+
+	-- Uninitialised Cints
+	grabDebounce: cint,
+
+	-- Widgets
+	Widgets: vector(Widget),
+	widgetSpotsAvailable: vector(boolean),
+
+	-- Uninitialised Vector2s
+	originalPosition: Vector2,
+	mouseOffset: Vector2,
+}
+```
+
+
+
+### Widget:Init
+
+```lua
+function Widget:Init()
+```
+
+
+
+### Widget:UpdateVW
+
+```lua
+function Widget:UpdateVW()
+```
+
+
+
+### Widget:Draw
+
+```lua
+function Widget:Draw()
+```
+
+
+
+### Widget:Update
+
+```lua
+function Widget:Update()
+```
+
+
+
+### UIWindow:Init
+
+```lua
+function UIWindow:Init()
+```
+
+
+
+### UIWindow:Update
+
+```lua
+function UIWindow:Update()
+```
+
+
+
+### UIWindow:Draw
+
+```lua
+function UIWindow:Draw()
+```
+
+
+
+---
