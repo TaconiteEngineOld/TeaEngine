@@ -33,6 +33,10 @@ Please download the windows build from the [Github releases tab](https://github.
 
 # Building from source
 
+Download the source code with `git clone --recurse-submodules https://github.com/TeaSpillStudios/TeaEngine/`
+
+Enter the new folder called `TeaEngine` and run `make libs`. Then `make libs-install`. Then enter the `src` folder in the `TeaEngine` directory. Run `make`
+
 Please download the source code from the [Github releases tab](https://github.com/TeaSpillStudios/TeaEngine/releases) and the extract it, on linux please run `make` in the folder. On windows, please run the `.bat` file
 
 # FAQ
