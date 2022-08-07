@@ -1,0 +1,3 @@
+[submodule "CLibs/TeaFS"]
+	path = CLibs/TeaFS
+	url = https://github.com/TeaSpillStudios/TeaFS
