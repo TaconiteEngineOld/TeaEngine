@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Set nelua files to have lua syntax highlighting
 *.nelua text linguist-language=lua
