@@ -1,5 +1,5 @@
 # TeaEngine
-Tea engine is a game engine being wrote in nelua with a custom compilation system that should give better performance, it is focused on ease of use for the user without creating a cluttered a user interface.
+Tea engine is a game engine being wrote in nelua with a custom system that should give better performance, it is focused on ease of use for the user without creating a cluttered a user interface.
 * **Modular** to allow only the things you require to be a part of your build and ease of use
 * **Simple** use for the end user, allowing them to worry less about the engine and more about what they are doing.
 * **Smaller scope** than game engines as Unity, this means you won't get distracted by the amount of tools, leading to faster and more productive. If there are too many tools you *may* get distracted by them or they may even get in your way.
