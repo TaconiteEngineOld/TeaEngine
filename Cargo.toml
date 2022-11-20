@@ -23,4 +23,6 @@ all-features = true
 
 [dependencies]
 env_logger = "0.9.3"
+glam = "0.22.0"
 log = "0.4.17"
+miniquad = "0.3.14"
