@@ -22,3 +22,5 @@ opt-level = 3
 all-features = true
 
 [dependencies]
+env_logger = "0.9.3"
+log = "0.4.17"
