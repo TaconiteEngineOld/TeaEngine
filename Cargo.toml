@@ -2,7 +2,13 @@
 name = "teaengine"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = [ "TeaSpillStudios <TeaSpillStudios@proton.me>" ]
+license = "MIT"
+homepage = "https://TeaSpill.vercel.app/projects/teaengine"
+repository = "https://github.com/TeaEngine/TeaEngine"
+description = """
+A simplistic game engine wrote in rust.
+"""
+readme="README.md"
 
 [dependencies]
