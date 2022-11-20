@@ -13,10 +13,10 @@ impl WindowConfig {
     }
 
     pub fn get_window_title(&self) -> String {
-        self.title
+        self.title.to_string()
     }
 
     pub fn get_window_size(&self) -> Vec2 {
-        Vec2::new(self.width, self.height)
+        Vec2::new(self.width as f32, self.height as f32)
     }
 }
