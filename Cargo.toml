@@ -11,4 +11,14 @@ A simplistic game engine wrote in rust.
 """
 readme="README.md"
 
+[lib]
+name = "teaengine"
+path = "src/lib.rs"
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[package.metadata.docs.rs]
+all-features = true
+
 [dependencies]
