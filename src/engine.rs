@@ -17,7 +17,7 @@ impl EventHandler for Stage {
 
 impl TeaEngine {
     pub fn build(config: WindowConfig) -> TeaEngine {
-        return TeaEngine { window_config: config };
+        TeaEngine { window_config: config }
     }
 
     pub fn run(&self) {
